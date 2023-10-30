@@ -1,0 +1,111 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/addgems.css' %}">
+
+<style>
+ 
+</style>
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Add Gems</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{{block.super}}
+
+<div class="parent-box ">
+    <h1 class="rainbow-text py-3 mx-3" >Add Gems</h1>
+    <div class="d-flex justify-content-center align-items-center ">
+
+      <form onsubmit="return validate()" method="POST" id="pform" class="form  mt-2" novalidate>
+
+          {% csrf_token %}
+
+          <p id="help" class="text-center  p-2 rounded  ">
+            Amount must be <br> more than ₹ 99
+          </p>
+
+          <div id="validate-box" class="text-center  rounded ">
+
+            <img class="mx-2" style="height: 30px;" src="{% static 'core/images/money.png' %}" alt="">
+            <input style="width: 150px;" class="amount-field" placeholder="Enter Amount" type="number" min="100"
+              name="amount" id="amount">
+              
+          </div>
+          
+          <div class="text-center m-3">
+            {% if payment %}
+            <button class="btn text-light bg-dark shadow"  type="submit" id="rzp-button1"> Continue to Pay</button>
+            {% else %}
+            <input type="submit" id="submit" class="button-s-base yel-color" value="Proceed">
+            {% endif %}
+          </div>
+      </form>
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+<script>
+
+
+  function validate(){
+    let val = $('#amount').val();
+
+
+    if(val == ""){
+      $('#help').text('Invalid Amount')
+      $('#help').addClass('text-danger')
+      return false;
+    }else{
+    if(isNaN(val)){
+      $('#help').text('Invalid Amount')
+      $('#help').addClass('text-danger')
+      return false;
+    }else{
+      if (parseInt(val) <= 99) {
+        $('#help').text('Invalid Amount')
+      $('#help').addClass('text-danger')
+     return false;
+
+    }else{
+      return true;
+
+    }; };
+
+    
+  };
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+{% endblock js %}

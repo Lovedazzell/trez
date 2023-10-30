@@ -1,0 +1,75 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 notification"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+
+
+<table class="table table-secondary" style="width: 100%;">
+    <thead>
+      <tr>
+        <th scope="col">Tran id</th>
+        <th scope="col">Event</th>
+        <th scope="col">Pay Id</th>
+        <th scope="col">Created</th>
+    
+      </tr>
+    </thead>
+    <tbody>
+
+    
+     {% for dt in data  %}
+       
+     <tr>
+       <td><a href="{% url 'refund_detail'  dt.id %}">{{dt.tran}} </a></td>
+       
+       <td>{{dt.event}}</td>
+       <td>{{dt.pay_id}}</td>
+       <td>{{dt.created}}</td>
+       
+      </tr>
+      
+      {% endfor %}
+
+     
+    </tbody>
+  </table>
+
+
+
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

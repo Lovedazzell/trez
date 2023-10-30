@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 parent-box"  >
+
+ 
+    {% include "superadmin/admin_nav.html" %}
+    <h5 class=" mx-3 rainbow-text" >
+        Are you sure you want to change states because it cant be reverse again!
+    </h5>
+
+    <p class="text-light mx-3 my-2" >Tran Id :  #{{data.user.transtion_id}} </p>
+    <p class="text-light mx-3 my-2" >Money   :  ₹{{data.user.fluctuate_gems}}</p>
+    <p class="text-light mx-3 my-2" >Fees    : ₹{{data.user.fees}}</p>
+    <p class="text-light mx-3 my-2" >Gems    :  ₹{{data.user.updates_gems}}</p>
+    <p class="text-light mx-3 my-2" >Date    :  {{data.user.created}}</p>
+
+    <form action="" method="POST"> 
+        {% csrf_token %}
+        <input class="button-30 mx-3 text-dark" type="submit" value="Submit">
+    </form>
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

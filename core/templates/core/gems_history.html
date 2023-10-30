@@ -1,0 +1,91 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<!-- <link rel="stylesheet" href="{% static 'core/css/notification.css' %}"> -->
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Gems History </title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+
+<div class=" px-2  parent-box"  >
+
+   <h1 class="rainbow-text px-2 py-2" >Gems History</h1>
+
+   {% for dt in data %}
+
+   <div class="text-center   text-decoration-none d-flex  bg-light ">
+      <div>
+         {% if   dt.sub_content_name == 'color' %}
+
+            {% if   dt.content_name == 'blue' %}
+
+            <p class="mt-2 px-2 align-self-center text-blue">
+               <b>{{dt.content_name}}</b>
+            </p> 
+
+            {% else %}
+
+            <p class="mt-2 px-2 align-self-center text-green">
+               <b>{{dt.content_name}}</b>
+            </p> 
+
+            {% endif %}
+
+         {% else %}
+
+         <p class="mt-2 px-2 align-self-center ">
+            <b>{{dt.content_name}}</b>
+         </p> 
+
+         {% endif %}
+            
+         <p class=" mt-2 px-2 ">
+            <span class=" text-muted px-1">{{dt.created|date:"DATE_FORMAT"}}</span>
+            <span class=" text-muted  px-1 ">{{dt.created|date:"TIME_FORMAT"}}</span>  
+         </p> 
+
+      </div>
+
+      <div class="align-self-center  ms-auto">
+         <p class=" mt-2 px-2 text-dark ">₹  -{{dt.gems}}</p>
+
+         <p class=" px-2 text-green "><b>₹  +{{dt.won_money}}</b></p> 
+         
+      </div>
+      
+      
+   </div>
+   <div class="bg-light" >
+      <div class="text-center">
+         <p class=" px-2 text-muted ">..{{dt.unique_key|slice:"-10:"}}</p> 
+
+      </div>
+   </div>
+
+   {% endfor %}
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+{% endblock js %}

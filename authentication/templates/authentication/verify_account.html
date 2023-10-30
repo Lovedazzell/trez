@@ -1,0 +1,46 @@
+{% extends "authentication/auth_base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+  {{block.super}}
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Account Verification</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+
+
+<div class="container" > 
+
+    <div class="text-center pt-5 logo">  <img style="width: 230px; height: 40px;"   class="" src="{% static 'core/images/dark_logo.png' %}" alt="">
+    </div>
+
+    <div class="mx-5">
+
+    
+
+
+            <p class="text-center text-dark">Welcome to our world</p>   
+   
+            <p class="text-center text-muted">Hurray! your account has been activated. Now you are ready to earn money lets bang!</p>   
+            <p class="text-center text-muted">Go to <a href="{% url 'login' %}">login</a> page</p>   
+            
+        
+      
+     
+      </div>
+  </div>
+
+
+
+  
+  {% endblock content %}

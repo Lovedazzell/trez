@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Combo&display=swap');
+
+.notification{
+    min-height: 100vh;
+    background:linear-gradient(180deg,rgb(12, 26, 54),rgb(236, 236, 236),rgb(236, 236, 236)) ;
+}
+
+
+
+.bl-color{
+    background:linear-gradient(to right,rgb(12, 26, 54),rgb(236, 236, 236),rgb(236, 236, 236)) ;
+}
+.gr-color{
+    background:linear-gradient(to right,rgb(33, 58, 5),rgb(236, 236, 236),rgb(236, 236, 236)) ;
+}
+
+
+.font-cursive{
+    font-family: 'Combo', cursive;
+}

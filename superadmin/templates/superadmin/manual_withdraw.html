@@ -1,0 +1,74 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 parent-box"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+<table class="table table-secondary" style="width: 100%;">
+    <thead>
+      <tr>
+        <th scope="col">Change status</th>
+        <th scope="col">Transition id</th>
+        <th scope="col">Request money</th>
+        <th scope="col">Fees</th>
+        <th scope="col">Gems</th>
+        <th scope="col">Bene Name</th>
+        <th scope="col">Account</th>
+        <th scope="col">IFSC</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for dt in data  %}
+     
+        <tr>
+            <th class="" style="cursor: pointer;"   > 
+                <a class="text-success text-decoration-none"  href="{% url 'confirm_status' dt.id %}">UPDATE</a> 
+            </th>
+            <td>#{{dt.user.transtion_id}} </td>
+            <th>₹{{dt.user.fluctuate_gems}}</th>
+            <th>₹{{dt.user.fees}}</th>
+            <td> ₹{{dt.user.updates_gems}}</td>
+            <td> {{dt.fund_name}}</td>
+            <td> {{dt.fund_account}}</td>
+            <td> {{dt.fund_ifsc}}</td>
+            <td>{{dt.user.created}}</td>
+        </tr>
+     
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

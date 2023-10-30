@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Notifications</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+<div class=" parent-box px-2"  >
+
+<h1 class="text-light border-start bg-secondary border-secondary border-3 px-2 py-2" >Hindi</h1>
+
+<div class="text-center">
+ 
+</div>
+
+<h1 class="text-light border-start border-secondary bg-secondary border-3 px-2 py-2" >English</h1>
+
+ 
+</div>
+
+
+
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+{% endblock js %}
+

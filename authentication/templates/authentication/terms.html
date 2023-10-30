@@ -1,0 +1,81 @@
+{% extends "authentication/auth_base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+  {{block.super}}
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Terms and Conditions</title>      
+<meta name="description" content="Terms and Conditions. Everything you need to know about Trezunt and trems you agree to when you use facebook">
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="nofollow" >
+{% endblock seo %}
+
+
+{% block content %}
+
+
+
+
+
+
+   <div class=" px-1">
+
+    <div class="text-center pt-4 logo">  <img style="width: 230px; height: 40px;"   class="" src="{% static 'core/images/logo.png' %}" alt="">
+    </div>
+    <h2 class=" mx-3 px-2  border-start border-secondary border-5 text-light  ">Terms & Conditions</h2>
+<div class="my-2">
+    <b class="px-2 mx-3 text-light">
+        Last updated on Oct 19th 2022
+    </b>
+</div>
+
+<p class="px-2 mx-3 text-light">
+    The use of this website is subject to the following terms of use:
+</p>
+
+
+
+<ul class="text-light">
+    <li class="my-2">The content of the pages of this website is for your general information and use only. It is subject to change without notice.</li>
+
+    <li class="my-2">Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.</li>
+
+    <li class="my-2">Any information share by you is save. We do not share share your personal information with other third party application except google (for authentication) and Razorpay (for accept and send Payment)</li>
+    <li class="my-2">
+        This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.
+    </li>
+    <li class="my-2">
+        All trademarks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.
+    </li>
+    <li class="my-2">
+        Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.
+    </li>
+    <li class="my-2">
+        We are not responsible if you get addicted to this site. So start using the site product on your risk
+    </li>
+    <li class="my-2">
+        From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information.
+    </li>
+
+    <li class="my-2">
+        You may not create a link to this website from another website or document without Trezunt’s prior written consent. 
+    </li>
+    <li class="my-2">
+        Your use of this website and any dispute arising out of such use of the website is subject to the laws of India or other regulatory authority.
+    </li>
+
+</ul>
+
+<p class="text-light px-2">
+    We as a merchant shall be under no liability whatsoever in respect of any loss or damage arising directly or indirectly out of the decline of authorization for any Transaction, on Account of the Cardholder having exceeded the preset limit mutually agreed by us with our acquiring bank from time to time
+</p>
+   </div>
+
+  
+{% endblock content %}

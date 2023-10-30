@@ -1,0 +1,77 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 parent-box"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+
+  <div class="p-3 bg-secondary mb-3 text-light ">
+    <b>Download Xml : </b>
+     <a href="{% url 'download_feedback' %}">
+      <button class="btn btn-light" >Click here</button>
+    </a>
+  </div>
+
+  <table class="table table-secondary" style="width: 100%;">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Ticket</th>
+        <th scope="col">Title</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for dt in data  %}
+     
+        <tr>
+            <th><a href="{% url 'support_detail'  dt.id %}"> {{dt.user}} </a>  </th>
+            <td>#{{dt.ticket}}</td>
+            <th>{{dt.title|truncatechars:25}}</th>
+            <td>{{dt.content|truncatechars:10}}</td>
+            <td>{{dt.created}}</td>
+          </tr>
+     
+     {% endfor %}
+     
+    </tbody>
+  </table>
+
+
+
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

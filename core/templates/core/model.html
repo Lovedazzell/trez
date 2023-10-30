@@ -1,0 +1,59 @@
+{% load static %}
+<div  id="money-modal-parent" class="money-modal-parent"   >
+    <div class="money-modal   rounded  p-2 ">
+        
+<div class="border rounded modal-heade aqu-color" >
+    <div class="modelhead">
+         <i onclick="closeModal()"   class=" p-2  px-3 fa-solid fa-xmark  text-dark fa-xl  "></i>
+         
+        <h5 class="  text-dark py-3 px-4 text-style " >Select Money 
+        
+        </h5>
+        
+    </div>
+</div>
+<div class="text-center m-4">
+
+    <div  id="modal_spinner">
+        <div   class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+    
+     <div class="d-flex justify-content-center m-3" >
+      <img style="height: 30px;" id="gem" class="gem" src="{% static 'core/images/gem.png' %}" alt=""> 
+       <b class="text-center" style="font-size: 20px;" id="total">10</b>
+     </div>
+    
+    <span id="minus" onclick="minus()"  class=" m-1 ">
+        <i class="fa-solid fa-minus fa-xl"></i>
+    </span>
+    <span  class="number border rounded">
+        <input id="number" style="width:70px; border: none;outline: none;text-align:center;" value="1" type="number">
+    </span>
+
+    <span id="increment "class="m-1  " onclick="increment()"  >
+        <i   class="fa-solid fa-plus fa-xl" ></i>
+    </span>
+    <div id="error" class=" border border-danger bg-danger text-light rounded  modal-error">
+        value must be grater than 0
+    </div>
+    <p id="info" class="text-muted m-3">
+
+    </p>
+
+</div>
+<div id="color_btn" class="text-center mb-3">
+    <button  id="color_purchase" class="button-30 text-blue" style="background-image: radial-gradient(100% 100% at 100% 0, rgb(121, 243, 252) 0, #00ffff 100%);"
+     >Bit</button>
+</div>
+<div id="number_btn" class="text-center mb-3">
+    <button  id="num_purchase" class="button-30 text-green" style="background-image: radial-gradient(100% 100% at 100% 0, rgb(121, 243, 252) 0, #00ffff 100%);"
+     >Bit</button>
+    
+</div>
+
+    </div>
+  </div> 
+
+

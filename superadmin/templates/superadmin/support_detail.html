@@ -1,0 +1,73 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support Detail</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 parent-box"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+
+
+<div class="bg-light rounded p-5">
+
+    <h5 class="">Email : {{data.user}}</h5>
+    <h5 class="mb-5" >Ticket no : #{{data.ticket}}</h5>
+<p class=""><b>Title :</b> {{data.title}}</p>
+<p class=""><b>Issue :</b> {{data.content}}</p>
+<p class="text-muted"><b> {{data.created}}    </b> </p>
+</div>
+<form action="" method="POST" onsubmit="return validate()">
+  {% csrf_token %}
+<p class="px-5"><b>Close Ticket</b></p>
+<span class=" mx-5 border border-secondary rounded p-2">
+    
+<b>Reason</b>
+<input type="text" name="reason" id="reason">
+</span>
+<p id="reason-error" class="text-danger mx-5 my-2"></p>
+<div>
+<input type="submit"  class="btn mx-5 my-3 btn-success "  value="close">
+</div>
+</form>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+function validate(){
+  reason = $('#reason').val()
+  if(reason == ""){
+    $('#reason-error').text('This must be filled')
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+  </script>
+{% endblock js %}

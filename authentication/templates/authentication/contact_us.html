@@ -1,0 +1,147 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<!-- <link rel="stylesheet" href="{% static 'core/css/notification.css' %}"> -->
+<style>
+    .form-area {
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+    }
+</style>
+
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Contact Us</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+<div class="parent-box">
+   
+  <h1 class="rainbow-text mx-4 px-2 py-2" >Contact us</h1>
+  <div class="d-flex  justify-content-center py-2">
+      <div class="bg-light" style="width: 90%; ">
+
+            <form onsubmit="return validation()"   novalidate>
+                {% csrf_token %}
+                <div class=" my-3">
+                    <h4 class="text-dark mx-3  theme" >Title</h4>
+
+                    <div class="text-center">
+                      <input  class="form-area text-center border  "  type="text" name="title" id="support_email">
+                      <p style="font-size: 12px;" id="title-error" class=" mx-5 text-danger"></p>
+                    </div>
+                </div>
+
+
+                <div class=" my-3"> 
+                  <h4 class="text-dark mx-3 theme" >Concern</h4>
+
+                  <div class="text-center">
+                      <textarea rows="4"  id="support_content" class=" text-center border border-secondary  " cols="25" name="comment" form="usrform" ></textarea>
+                      <p style="font-size: 12px;" id="comment-error" class=" mx-5 text-danger"></p>
+                  </div>
+                </div>
+
+
+                <div class="text-center my-3"> 
+                    <input class="button-s-base aqu-color  px-4 " type="submit" value="Submit">
+                </div>
+                
+                <p class="text-muted text-center">or</p>
+                <p class="text-muted text-center">Email us on support@trezunt.com </p>
+
+
+            </form>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+
+
+
+<script>
+
+function validation(){
+    let title = $('input[name="title"]').val();
+  let comment = $('textarea[name="comment"]').val();
+  if (title.length  < 15){
+      $('#title-error').text('Minimum 15 charactor required')
+      $('input[name="title"]').css('background-color','#fdd0d0')
+      return false
+    }else{
+        if (comment.length  < 25){
+            $('#title-error').text('')
+            $('#comment-error').text('Minimum 25 charactor required')
+            $('input[name="title"]').css('background-color','white')
+      $('textarea[name="comment"]').css('background-color','#fdd0d0')
+      return false
+}else{
+    $('#loading-background').addClass('visible').removeClass('invisible')
+
+    my_data = { ttl : title,cmt:comment }
+
+    $.ajax({
+      url: "{% url 'support' %}",
+      method: 'POST',
+      dataType: 'json',
+      data: my_data,
+      success: function (data) {
+        $('#loading-background').addClass('invisible').removeClass('visible')
+        $('input[name="title"]').val('')
+        $('textarea[name="comment"]').val('')
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        if (data.status == 'm-error') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+        }, 4000)
+
+
+
+        }});
+
+    return false
+}}};
+    
+</script>
+
+
+
+
+{% endblock js %}

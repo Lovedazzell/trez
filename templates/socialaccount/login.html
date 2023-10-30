@@ -1,0 +1,52 @@
+{% extends "socialaccount/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="confirm">
+
+
+  <div class="text-center pt-5 logo mb-4">  
+    <img style="width: 502px; height: 97px;"   class="" 
+    src="{% static 'core/images/dark_logo.png' %}" alt="">
+  </div>
+  
+  {% if process == "connect" %}
+ 
+
+
+
+<div class="text-center">
+  <h1 class="text-center">{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
+  
+</div>
+
+
+
+  <p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+  {% else %}
+ <div class="text-center">
+  <h3 class="text-center pt-4" style="color: rgb(16, 20, 61);font-size: 58px;">{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h3>
+  
+ </div>
+  <div class="text-center my-5">
+    <p class="text-muted" style="    font-size: 40px;">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+  
+  </div>
+  
+  {% endif %}
+  
+  <form method="post">
+    {% csrf_token %}
+   <div class="text-center">
+
+    <button  class="btn rounded px-4" style="background-color: rgb(12, 26, 54);color: white;    font-size: 40px; " type="submit">{% trans "Continue" %}</button>
+   </div>
+  </form>
+
+
+
+</div>
+{% endblock %}

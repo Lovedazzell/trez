@@ -1,0 +1,346 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt live data</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+
+
+
+
+<div class=" px-2 notification"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+
+
+    <div class="d-flex bg-light rounded justify-content-center mb-3 ">
+
+        <h3 class="text-center font-cursive " > Colors</h3>
+    
+    </div>
+
+
+<div class="d-flex justify-content-center ">
+    <div class="rounded shadow  text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-primary"> BLUE</h5>
+        <p id="blue" class="text-center text-muted">
+            ₹ {{data.blue}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">GREEN</h5>
+        <p id="green" class="text-center text-muted">
+            ₹ {{data.green}}
+        </p>
+    </div>
+</div>
+
+
+<!-- --------------------------------blue color number------------------------------ -->
+
+<div class="d-flex bg-primary rounded justify-content-center my-3 ">
+
+    <h3 class="text-center text-light my-1 font-cursive " > Blue Color</h3>
+
+</div>
+
+
+    <div class="d-flex">
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light"  style="width: 45%;">
+        <h5 class="text-center text-primary">0</h5>
+        <p id="0b" class="text-center text-muted">
+            ₹  {{data.blue0}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;" >
+        <h5 class="text-center text-primary">1</h5>
+        <p  id="1b" class="text-center text-muted">
+            ₹  {{data.blue1}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-primary">2</h5>
+        <p  id="2b" class="text-center text-muted">
+            ₹  {{data.blue2}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-primary">3</h5>
+        <p  id="3b" class="text-center text-muted">
+            ₹  {{data.blue3}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-primary">4</h5>
+        <p  id="4b" class="text-center text-muted">
+            ₹  {{data.blue4}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-primary">5</h5>
+        <p  id="5b" class="text-center text-muted">
+            ₹  {{data.blue5}}
+        </p>
+    </div>
+  
+   
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-primary">6</h5>
+        <p  id="6b" class="text-center text-muted">
+            ₹  {{data.blue6}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-primary">7</h5>
+        <p  id="7b" class="text-center text-muted">
+            ₹  {{data.blue7}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-primary">8</h5>
+        <p id="8b" class="text-center text-muted">
+            ₹  {{data.blue8}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-primary">9</h5>
+        <p id="9b" class="text-center text-muted">
+            ₹  {{data.blue9}}
+        </p>
+    </div>
+  
+   
+    </div>
+
+
+
+
+
+<!-- ================================================green color number=============================== -->
+
+
+
+<div class="d-flex bg-success rounded justify-content-center my-3 ">
+
+    <h3 class="text-center text-light my-1 font-cursive " > Green Color</h3>
+
+</div>
+
+<div class="d-flex">
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-success">0</h5>
+        <p id="0g"  class="text-center text-muted">
+            ₹  {{data.green0}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">1</h5>
+        <p id="1g"  class="text-center text-muted">
+            ₹  {{data.green1}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-success">2</h5>
+        <p id="2g"  class="text-center text-muted">
+            ₹  {{data.green2}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">3</h5>
+        <p id="3g"  class="text-center text-muted">
+            ₹  {{data.green3}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-success">4</h5>
+        <p id="4g"  class="text-center text-muted">
+            ₹  {{data.green4}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">5</h5>
+        <p id="5g"  class="text-center text-muted">
+            ₹  {{data.green5}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-success">6</h5>
+        <p id="6g"  class="text-center text-muted">
+            ₹  {{data.green6}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">7</h5>
+        <p id="7g"  class="text-center text-muted">
+            ₹  {{data.green7}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+    <div class="rounded shadow text-center mx-2 p-2 bg-light" style="width: 45%;">
+        <h5 class="text-center text-success">8</h5>
+        <p id="8g"  class="text-center text-muted">
+            ₹  {{data.green8}}
+        </p>
+
+    </div>
+    <div class=" rounded shadow text-center mx-2  p-2  bg-light"  style="width: 45%;">
+        <h5 class="text-center text-success">9</h5>
+        <p id="9g"  class="text-center text-muted">
+            ₹  {{data.green9}}
+        </p>
+    </div>
+  
+   
+
+
+
+
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+var ws_scheme = window.location.protocol == 'https:' ? "wss" :'ws';
+if(window.location.host == '127.0.0.1:8000'){
+
+var ws_path = ws_scheme + '://' +window.location.host + '/';
+}else{
+
+var ws_path = ws_scheme + '://' +window.location.host + ':8001/';
+}
+
+let socket = new WebSocket(ws_path + "ws/live_sync/" );
+socket.onopen = function(e){
+
+
+}
+
+socket.onmessage = function(e){
+  let raw = JSON.parse(e.data);
+  let payload_data = raw.payload
+ 
+
+//   dynamic data for colors
+  $('#green').text('₹'+payload_data.green);
+  $('#blue').text('₹'+payload_data.blue);
+
+//   dynamic data for green num
+  $('#0g').text('₹'+payload_data.green0);
+  $('#0b').text('₹'+payload_data.blue0);
+
+  $('#1g').text('₹'+payload_data.green1);
+  $('#1b').text('₹'+payload_data.blue1);
+
+  $('#2g').text('₹'+payload_data.green2);
+  $('#2b').text('₹'+payload_data.blue2);
+
+  $('#3g').text('₹'+payload_data.green3);
+  $('#3b').text('₹'+payload_data.blue3);
+
+  $('#4g').text('₹'+payload_data.green4);
+  $('#4b').text('₹'+payload_data.blue4);
+
+  $('#5g').text('₹'+payload_data.green5);
+  $('#5b').text('₹'+payload_data.blue5);
+
+  $('#6g').text('₹'+payload_data.green6);
+  $('#6b').text('₹'+payload_data.blue6);
+
+  $('#7g').text('₹'+payload_data.green7);
+  $('#7b').text('₹'+payload_data.blue7);
+
+  $('#8g').text('₹'+payload_data.green8);
+  $('#8b').text('₹'+payload_data.blue8);
+
+  $('#9g').text('₹'+payload_data.green9);
+  $('#9b').text('₹'+payload_data.blue9);
+
+    
+}
+
+socket.onclose = function(e){
+ 
+}
+
+  </script>
+{% endblock js %}

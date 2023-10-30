@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --color:rgb(12, 26, 54);
+    --green:rgb(33, 58, 5);
+    --blue:rgb(5, 11, 58);
+}
+
+
+
+
+.bg-blue{
+    background-color: var(--blue);
+}
+
+
+
+#modal_spinner{
+    visibility: hidden;
+}
+
+
+.top{
+
+    background-color: var(--color)
+}
+
+.top-color{
+
+    color: var(--color)
+}
+
+.dashboard{
+    background-color: var(--color);
+    padding-bottom: 40px;
+}
+
+
+.s-b-c{
+position: absolute;
+right: 0px;
+top: 0px;
+}
+
+.change-position{
+    position: relative;
+}
+
+
+.side-ul{
+list-style-type: none;
+
+}
+
+.modal-error{
+    margin-top: 20px    ;
+    width: auto;
+    display: none;
+
+}
+
+.bg-acre{
+    background-color: aliceblue;
+}
+
+.side-link{
+    color: rgb(238, 238, 238);
+    text-decoration: none;
+}
+.side-link:hover{
+    color: aqua;
+    transition: 1s;
+}
+.side-item{
+    font-size: 30px;
+ 
+    
+}
+
+.btn-color{
+    background-color: rgba(86,86,140,255)
+    
+}
+
+.hr{
+    background:linear-gradient(to right,rgba(255, 255, 255, 0), rgb(0, 0, 0),rgba(236, 236, 236, 0)) ;
+}
+
+
+
+#color_btn{
+    display: none;
+}
+
+
+#number_btn{
+display: none;
+}
+
+.countdoun-number{
+    font-size: 90px;
+    text-align: center;
+    font-family: 'Black Ops One', cursive;
+  
+   
+}
+
+.treasure{
+   
+    width: 100%;
+    text-align: center;
+}
+
+.countdown{
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 8rem;
+    width: auto;
+    min-width: 200px;;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.group{
+    
+    display: grid;
+}
+.number{
+    padding: 14px;
+}
+.bg-green{
+    background-color: var(--green);
+}
+.bg-blue{
+    background-color: var(--blue);
+}
+
+
+.grey{
+    background-color:rgb(190, 190, 190);
+    color: rgb(36, 36, 36);
+}
+.yellow{
+    background-color: rgb(40, 131, 60);
+}
+.yellow:hover{
+    background-color: rgb(0, 110, 24);
+}
+.panel{
+    height: 100%;
+    background-color: rgba(4, 4, 78, 0.808);
+    position:fixed;
+    width: 100vw;
+    z-index: 8;
+    visibility: hidden;
+}
+
+.message{
+    position: fixed;
+    z-index: 9;
+    
+    display: none;
+    opacity: 1;
+    transition: 1s;
+   
+    
+}
+
+.message-c{
+    display: none;
+}
+
+
+
+
+.v-message{
+    position: fixed;
+    z-index: 9;
+    visibility: visible;
+    opacity: 1;
+    transition: 1s;
+   
+    
+}
+
+.message-m{
+     background-color: #efefef
+}
+
+.message-text{
+    color: green;
+}
+
+.money-modal-parent{
+    position: fixed;
+    z-index: 8;
+    width: 100vw;
+    bottom: 0;
+    height: 100%;
+    visibility:hidden;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.548);
+    justify-content: center;
+
+}
+
+.modal-heade{
+background-color: var(--color);
+}
+
+.modelhead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.money-modal{
+    background-color: rgb(255, 255, 255);
+
+
+    height: auto;
+    width: 80%;
+}
+
+.pink{
+    background-color: rgb(97, 125, 252);
+}
+.pink:hover{
+    background-color: rgb(68, 102, 250);
+}
+
+.color-button{
+    padding: 30px;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+

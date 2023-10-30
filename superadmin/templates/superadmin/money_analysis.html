@@ -1,0 +1,140 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Money Analysis</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+
+
+
+
+<div class=" px-2 "  >
+ 
+{% include "superadmin/admin_nav.html" %}
+
+        <!-- current day spend -->
+        <div class="d-flex justify-content-around my-4">
+
+            <div  class="">
+                <h1 class="rainbow-text">
+                    Current Day Earning
+                </h1>
+                <p class="text-light">
+                    Total earning from 12 am to 11:59 pm
+                </p>
+            </div>
+
+            <div class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            {{data.earning}}
+            </div>
+
+        </div>
+
+        <hr class=" bg-light">
+
+<!-- today money flow -->
+        <div class="d-flex justify-content-around my-4">
+
+            <div class="text-center rounded  text-success shadow   px-3" style="font-size: 70px;background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+                {{data.cash_flow}}
+            </div>
+
+            <div  class="">
+            <h1 class="rainbow-text">
+                    Today Money Flow In App
+                </h1>
+                <p class="text-light">
+                    Amount of virtual money spend by users in app
+                </p>
+            </div>
+
+        </div>
+
+        <hr class=" bg-light">
+
+        <!-- total bank entries -->
+        <div class="d-flex justify-content-around my-4">
+
+            <div  class="mx-5">
+                <h1 class="rainbow-text">
+                    Total Bank Entries
+                </h1>
+                <p class="text-light">
+                    Amount of money that has been transfered to bank using razorpay integration
+                </p>
+            </div>
+            
+            <div class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            {{data.bank_transitions}}
+            </div>
+            
+        </div>
+
+        <hr class=" bg-light">
+
+        <!-- total money withdraw -->
+        <div class="d-flex justify-content-around my-4">
+
+            <div class="text-center rounded  text-success shadow   px-3" style="font-size: 70px;background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            {{data.withdraw}}
+            </div>
+
+            <div  class="">
+                <h1 class="rainbow-text">
+                    Today Money Withdraw 
+                </h1>
+                <p class="text-light">
+                    Amount of money withdraw by users
+                </p>
+            </div>
+
+        </div>
+
+        <hr class=" bg-light">
+  
+
+            <!-- User winning amount -->
+        <div class="d-flex justify-content-around my-4">
+            <div  class="mx-5">
+                <h1 class="rainbow-text">
+                    Money Distribution
+                </h1>
+                <p class="text-light">
+                    Amount of money that distribute to users like refer bonus, winning prise 
+                </p>
+            </div>
+            
+            <div class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            {{data.user_winning_amount}}
+            </div>
+
+        </div>
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

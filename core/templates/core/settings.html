@@ -1,0 +1,139 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/settings.css' %}">
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt settings</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+
+
+
+
+{{block.super}}
+
+<div class="parent-box "  >
+  <h1 class="rainbow-text mx-3 pt-3"  >Settings</h1>
+    <div class="text-center mb-2 px-3 pt-3">
+      <a href="{% url 'addgems' %}" class="  text-decoration-none d-flex justify-content-between rounded align-items-center " >
+        <div class="row">
+            <div class="col-2">
+             <span class="bg-light p-2 rounded" >
+              <img style="height: 30px;" class=""  src="{% static 'core/images/gem.png' %}" alt="">
+             </span>
+            </div> 
+            <div class="col-9">
+              <h5 class="text-light mx-3 mt-1" >Add Gems</h5> 
+            </div>
+        </div>
+      </a>
+    </div>
+
+
+    <div class="text-center mb-2 px-3 pt-3">
+      <a href="{% url 'transitions' %}" class="  text-decoration-none d-flex justify-content-between rounded align-items-center " >
+        <div class="row">
+            <div class="col-2">
+             <span class="bg-light p-2 rounded" >
+              <img style="height: 30px;" class=""  src="{% static 'core/images/transition.png' %}" alt="">
+             </span>
+            </div> 
+            <div class="col-9">
+              <h5 class="text-light mx-3 mt-1" >Transitions</h5> 
+            </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="text-center mb-2 px-3 pt-3">
+      <a href="{% url 'withdraw' %}" class="  text-decoration-none d-flex justify-content-between rounded align-items-center " >
+        <div class="row">
+            <div class="col-2">
+             <span class="bg-light p-2 rounded" >
+              <img style="height: 30px;" class=""  src="{% static 'core/images/withdraw.png' %}" alt="">
+             </span>
+            </div> 
+            <div class="col-9">
+              <h5 class="text-light mx-3 mt-1" >Withdraw</h5> 
+            </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="text-center mb-2 px-3 pt-3">
+      <a href="{% url 'change_password' %}" class="  text-decoration-none d-flex justify-content-between rounded align-items-center " >
+        <div class="row">
+            <div class="col-2">
+             <span class="bg-light p-2 rounded" >
+              <img style="height: 30px;" class=""  src="{% static 'core/images/key.png' %}" alt="">
+             </span>
+            </div> 
+            <div class="col">
+              <h5 class="text-light mx-2 mt-1" > Change Password</h5> 
+            </div>
+        </div>
+      </a>
+    </div>
+
+
+    <div class="text-center mb-2 px-3 pt-3">
+      <a href="{% url 'reffer_data' %}" class="  text-decoration-none d-flex justify-content-between rounded align-items-center " >
+        <div class="row">
+            <div class="col-2">
+             <span class="bg-light p-2 rounded" >
+              <img style="height: 30px;" class=""  src="{% static 'core/images/share.png' %}" alt="">
+             </span>
+            </div> 
+            <div class="col">
+              <h5 class="text-light mx-2 mt-1" >Reffer Friend</h5> 
+            </div>
+        </div>
+      </a>
+    </div>
+
+
+
+   <!-- 
+ </div>
+      <div class="text-center container  mb-2  px-3 ">
+<a href="{% url 'gemshistory' %}" class="text-decoration-none bg-light d-flex justify-content-between rounded align-items-center " >
+        <img style="height: 30px;"  class="px-3"   src="{% static 'core/images/statement.png' %}" alt=""> 
+          <h5 class="text-muted m-2" >Gems History</h5> 
+          <i class="fa-solid fa-xl px-3 text-muted fa-angle-right"></i>
+</a>
+ </div>
+
+   <div class="text-center container  mb-2  px-3 ">
+
+    
+<a href="{% url 'world_history' %}" class="text-decoration-none bg-light d-flex justify-content-between rounded align-items-center " >
+        <img style="height: 30px;"  class="px-3"   src="{% static 'core/images/world.png' %}" alt=""> 
+          <h5 class="text-muted m-2" >Global History</h5> 
+          <i class="fa-solid fa-xl px-3 text-muted fa-angle-right"></i>
+</a>
+ </div> -->
+
+
+   
+    
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+{% endblock js %}

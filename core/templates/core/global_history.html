@@ -1,0 +1,69 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Global History</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+
+<div class=" px-2 parent-box "  >
+  <h1 class="rainbow-text px-2 py-2" >Global History</h1>
+  {% for dt in data %}
+  <div class="text-center mb-2 bg-light text-decoration-none d-flex  ">
+
+      <div>
+          {% if   dt.color == 'blue' %}
+
+          <p class=" mt-2 px-2 text-blue ">
+            <b>{{dt.color}}</b>
+          </p> 
+
+          {% else %}
+
+          <p class=" mt-2 px-2 text-green ">
+            <b>{{dt.color}}</b>
+          </p> 
+
+          {% endif %}
+        
+          <p class=" mt-2 px-2 "> 
+            <span class=" text-muted  ">{{dt.created|date:"TIME_FORMAT"}}</span>
+          </p> 
+      </div>
+
+      <div class="align-self-center  ms-auto">
+
+
+          <p class=" mt-2 px-2 text-dark ">
+            <b>{{dt.number}}</b>
+          </p>
+
+         
+          <p class=" px-2 text-muted ">...{{dt.unique_key|slice:"-10:"}}</p> 
+
+      </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+{% endblock js %}

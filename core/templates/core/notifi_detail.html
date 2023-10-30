@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+</style>
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Notifications</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+<div class="  bg-light parent-box "  >
+
+    <div class="py-3  px-3 text-center yel-color " >
+        {{data.title}}
+    </div>
+    <div class="py-3 px-3   ">
+    {{data.notification|safe}}
+    </div>
+    
+</div>
+
+{% endblock content %}
+

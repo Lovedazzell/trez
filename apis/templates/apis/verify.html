@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/dashboard.css' %}">
+
+{% endblock css %}
+
+{% block content %}
+ 
+{{block.super}}
+
+
+<div class="text-center  parent-box" style="background-color: white;">
+    <div class="row" style="margin-right: 0px;">
+        <div class="col-sm-6">
+            <img  style="width:100%" src="{% static 'core/images/checkmark.gif' %} " > 
+
+        </div>
+        <div class="col-sm-6 ">
+
+           <div class="dinamic  " style="padding-top:130px;" >
+            <h1>Transfer Initiated </h1>
+            <a href="{% url 'transitions' %}" class="text-decoration-none">
+                <span  class="p-2 px-5  text-dark par-color" style="font-size: larger;" >Go to transitions</span>
+            </a>
+           </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+{% block js %}
+  
+{{block.super}}
+
+{% endblock js %}

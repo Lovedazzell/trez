@@ -1,0 +1,188 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/dashboard.css' %}">
+{% endblock css %}
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt </title>      
+<meta name="description" content="Trezunt is the best online earning space where you can try your luck and earn instant money">
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="nofollow" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+<div     class="top pt-4" style="overflow: hidden;">
+  <section class="sticky">
+    <div class="bubbles">
+        <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      
+    </div>
+  </section>
+
+
+
+  <h1 class=" px-3 rainbow-text" >Hey! Welcome Back</h1>
+
+  <button class="button-base mx-2 ch-index "  style="cursor: pointer;">Gems {{request.user.gems}}</button>
+ 
+
+
+
+  <!-- display tmc content -->
+  <a href="{% url 'tmc' %}" class="text-decoration-none ch-index"  "> 
+      <div class="d-flex justify-content-end mx-2 pt-5" > 
+
+        <div class="m-2  " style="z-index: 5;">
+          <h1 class=" text-light text-style " >TMC..</h1>
+          <p class="text-light  text-style">
+            Three Minute Countdown. Earn money by just simple prediction
+          </p>
+        </div>
+
+
+        <div class=" block-flex" style="z-index: 5;" >
+          <div class="text-center align-items-center my-4 ">
+            <img
+              class=" "
+              src="{% static 'core/images/timer.png' %}"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </a>
+
+
+  <!-- display jackpot content -->
+  <a id="jackpot"  class=" text-decoration-none" style="cursor: pointer;">
+    <div class="d-flex justify-content-start ch-index  py-5" style="background-color: #00ffc4;" > 
+      <div class=" block-flex" style="z-index: 5;" >
+        <div class="text-center align-items-center my-4 ">
+          <img
+            class=" "
+            style="width: 4rem;"
+            src="{% static 'core/images/jackpot.png' %}"
+            alt=""
+          />
+        
+        </div>
+      </div>
+
+      <div class="m-2  "  style="z-index: 5;">
+        <h1 class=" text-light text-style  " >JACKPOT</h1>
+        <p class="text-light text-style ">
+          Earn Money upto 50x in one day by investing small amount of money..
+        </p>
+      </div>
+    </div>
+  </a>
+
+
+  <!-- market place -->
+  <a href="{% url 'market' %}" class="text-decoration-none ch-index" > 
+    <div class="d-flex justify-content-end  pt-5" style="background-color: #ffffff;" > 
+
+      <div class="m-2  " style="z-index: 5;">
+        <h1 class=" text-dark text-style " >MARKET</h1>
+        <p class="text-dark  text-style">
+          Use gems to buy some amazing gadgets
+        </p>
+      </div>
+
+
+      <div class=" block-flex" style="z-index: 5;" >
+        <div class="text-center align-items-center my-4 ">
+          <img
+            class=" "
+            src="{% static 'core/images/market.png' %}"
+            alt=""
+          />
+        
+        </div>
+      </div>
+    </div>
+  </a>
+
+
+
+  <!-- Display reffer bunus -->
+  <div style="cursor: pointer;"  class="py-3 text-center ch-index  reffer-dashboard text-style"  >
+    <h1>Reffer Bonus : {{request.user.Reffer_money}}</h1>
+  </div>
+
+  <div class="py-5 bg-light text-center">
+    <p class="text-style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ex nesciunt facilis! Architecto tempora animi aspernatur cum, perferendis odio deserunt?</p>
+  </div>
+
+  <svg viewBox="0 0 735 220" class="animation-logo" >
+    <symbol id="s-text">
+      <text text-anchor="middle" x="50%" y="80%">TREZUNT </text>
+      <text text-anchor="middle" x="52%" y="80%">TREZUNT </text>
+      
+    </symbol>
+  
+    <g class = "g-ants">
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+      <use xlink:href="#s-text" class="text-copy"></use>
+    </g>
+  </svg>
+
+
+
+
+</div>
+
+
+
+  {% endblock content %}
+
+{% block js %}
+  
+{{block.super}}
+
+
+  <script>
+
+
+
+$('#jackpot').click(function(){
+ 
+  document.getElementById('message-d').style.opacity = '1'
+  document.getElementById('message-d').style.display = 'flex'
+  document.getElementById('message-c').style.display = 'block'
+  document.getElementById('message-text').style.color = 'purple'
+  $('#message-text').html('Jackpot comming soon..')
+
+  setTimeout(function () {
+    document.getElementById('message-d').style.opacity = '0'
+  }, 3000)
+  setTimeout(function () {
+    document.getElementById('message-d').style.display = 'none'
+    document.getElementById('message-c').style.display = 'none'
+  }, 4000)
+
+
+})
+
+</script>
+ 
+ 
+{% endblock js %}

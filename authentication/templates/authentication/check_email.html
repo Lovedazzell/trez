@@ -1,0 +1,52 @@
+{% extends "authentication/auth_base.html" %} {% load static %} {% block css %}
+{{block.super}}
+<style>
+  body{
+    background-color: white;}
+</style>
+{% endblock css %}
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Email Verification</title>
+<meta name="keywords" content="trezunt, online earning, prediction game" />
+<meta name="robots" content="noindex" />
+{% endblock seo %} {% block content %}
+
+<div class="container parent-box">
+  <div class="text-center pt-5 logo">
+    <img
+      style="width: 230px; height: 40px"
+      class=""
+      src="{% static 'core/images/dark_logo.png' %}"
+      alt=""
+    />
+  </div>
+
+  <div class="mx-5">
+    <p class="text-center rainbow-text">Check your mail</p>
+    <p class="text-center text-muted">
+      We have sent you a link for activation your account
+    </p>
+    <p class="text-center text-muted">
+      if not received check your span box or resend by entering registered email
+    </p>
+  </div>
+  <div class="text-center">
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      <input
+        type="email"
+        class="auth-password border rounded text-center"
+        name="email"
+        id="email"
+        placeholder="Enter email"
+      />
+      <div class="text-center mt-3">
+        <input class="button-30" type="submit" value="Resend" />
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

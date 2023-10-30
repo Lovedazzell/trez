@@ -1,0 +1,234 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/settings.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Edit Profile</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{{block.super}}
+
+<div class=" parent-box bg-theme"  >
+
+    <div class="px-3 rainbow-text">
+        <!-- <img style="height: 120px;"  class="rounded my-4"   src="{{request.user.profile_image.url}}" alt=""> -->
+        <h1> {% if request.user.username %}
+          {{request.user.username}} 
+        {% endif %} </h1>
+    </div>
+
+    <div class="d-flex justify-content-end  px-3">
+        <span  id="edit" class="button-30" style="cursor: pointer;" > Edit <i class="   fa-solid fa-pen-fancy"></i></span>
+    </div>
+
+    <div class="p-2">
+
+        <!-- <form method="POST"   enctype="multipart/form-data" novalidate>
+            {%csrf_token %}
+            <div  id="change-profile" style="display: none;"     class="rounded bg-content-box shadow">
+              <div   class=" py-2 d-flex   justify-content-between align-items-center">
+                  <p class="p-2  text-muted" >Profile</p>
+                  <input type="submit" class="btn btn-color btn text-light mx-2"  value="Save"  id="save"    name="submit">
+              </div>
+              <div id="change-username"   class="text-center">
+                  <p class="p-2"> {{form.profile_image}} </p>
+              </div>
+            </div>
+        </form>   -->
+
+
+        <div class="bg-content-box rounded shadow  mt-3 ">
+            <div   class=" d-flex justify-content-between align-items-center">
+                <p class="p-2  text-muted" >Nick name</p>
+                {% if request.user.username == None %}
+                <p class="p-2 text-muted"> e.g. Love </p>
+                {% else %}
+                <p class="p-2"> {{request.user.username|upper}}  </p>
+                {% endif %}
+                <button  class="btn btn-color pur-color text-light mx-2"  style="display:none;" id="user-save" >Save</button>
+            </div>
+
+            <div id="change-user"  style="display: none;" class="text-center">
+               <input type="text" name="text" id="update-user" class="profile-t-form" >
+            </div>
+            <p class="text-center text-danger" id="name_error"></p>
+        </div>
+        
+
+        
+        <div   class="  bg-content-box shadow rounded mt-3  d-flex justify-content-between align-items-center">
+            <p class="p-2  text-muted" >Email</p>
+            <p class="p-2"> {{request.user}}  </p>
+        </div>
+        
+        
+        <div class=" bg-content-box shadow rounded mt-3 ">
+            <div   class="  d-flex justify-content-between align-items-center">
+                <p class="p-2  text-muted" >Mobile</p>
+                {% if request.user.mobile == None %}
+                <p class="p-2 text-muted"> e.g. 9876543210 </p>
+                {% else %}
+                <p class="p-2"> {{request.user.mobile}}  </p>
+                {% endif %}
+                <button  class="btn btn-color pin-color text-light mx-2" style="display:none;"  id="num-save" >Save</button>
+            </div>
+            
+            <div  id="change-mobile"   style="display: none;" class=" text-center">
+                <input type="number"   name="number" id="update-mobile" class="profile-t-form" >
+            </div>
+            <p class="text-center text-danger" id="number_error"></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+
+<script>
+
+
+$('#edit').click(function(){
+
+$('#change-user').css('display','block');
+$('#change-mobile').css('display','block');
+$('#change-profile').css('display','block');
+$('#save').css('display','inline');
+$('#user-save').css('display','inline');
+$('#num-save').css('display','inline');
+});
+
+
+$('#num-save').click(function(){
+    $('#loading-background').addClass('visible').removeClass('invisible')
+let val = $('#update-mobile').val()
+let input = 'number'
+
+
+my_data = { data: val, input: input }
+
+    $.ajax({
+      url: "{% url 'profile_update' %}",
+      method: 'POST',
+      dataType: 'json',
+      data: my_data,
+      success: function (data) {
+        $('#loading-background').addClass('invisible').removeClass('visible')
+
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        else {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+          if (data.status == 'm-success') {
+
+              location.reload();
+          }
+        }, 4000)
+
+
+      }
+    });
+    });
+
+
+
+
+
+
+
+
+$('#user-save').click(function(){
+    $('#loading-background').addClass('visible').removeClass('invisible')
+let val = $('#update-user').val()
+let input = 'username'
+
+
+my_data = { data: val, input: input }
+
+    $.ajax({
+      url: "{% url 'profile_update' %}",
+      method: 'POST',
+      dataType: 'json',
+      data: my_data,
+      success: function (data) {
+        $('#loading-background').addClass('invisible').removeClass('visible')
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        else {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+          if (data.status == 'm-success') {
+
+location.reload();
+}
+        }, 4000)
+
+
+      }
+    });
+    });
+
+
+
+
+
+
+</script>
+
+
+{% endblock js %}

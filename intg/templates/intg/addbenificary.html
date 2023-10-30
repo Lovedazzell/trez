@@ -1,0 +1,335 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+<style>
+    .form-area {
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+    }
+</style>
+
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Add Beneficiary</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" parent-box ">
+    <h1 class="rainbow-text  align-self-center p-3" >Add Benificiary</h1>
+    <div class="d-flex  justify-content-center py-2">
+        <div class=" " style="width: 90%; background-color: rgb(236, 236, 236);">
+
+            <form action="" method="POST" novalidate >
+                {% csrf_token %}
+                <div class="text-center my-3">
+                    <input class="form-area rounded border border-3" placeholder="Benificary Name"
+                        type="text" name="name" id="name">
+                    <p id="name_error" style="font-size: 11px;" class="text-center text-danger px-5">
+                    </p>
+                </div>
+              
+                <div class="text-center my-3">
+                    <input class="form-area rounded  border border-3" placeholder="Account Number" type="number" name="account1" id="account1">
+                    <p id="account1_error" style="font-size: 11px;" class="text-center text-danger px-5">
+                    </p>
+                </div>
+
+                <div class="text-center my-3">
+                    <input class="form-area rounded border border-3" placeholder="Account Number(again)" type="number" name="account2" id="account2">
+                    <p id="account2_error" style="font-size: 11px;" class="text-center text-danger px-5">
+                    </p>
+                </div>
+
+                <div class="text-center my-3">
+                    <input class="form-area rounded border border-3" placeholder="IFSC" type="text" name="ifsc" id="ifsc">
+                    <p id="ifsc_error" style="font-size: 11px;" class="text-center text-danger px-5">
+                    </p>
+                </div>
+
+                <div class="text-center mb-4">
+                    <span id="proceed-btn"  style="cursor: pointer;"  class=" button-s-base pin-color  "> Proceed</span>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+
+<script>
+  
+
+
+
+        let name_submit = false
+        let ifsc_submit = false
+        let account_submit = false
+        const ifsc_validation_regexExp = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+
+        
+          // form name validation===============
+
+        $('#name').keyup(function(){
+            let name = $('#name').val();
+    
+            if(name == ''){
+            $('#name_error').text('This field is required')
+            $('#name').css('background-color','#fdd0d0')
+            $('#name').removeClass('border-info').addClass('border-danger ')
+           
+            name_submit = false
+
+        }else{
+        if ((Object.keys(name).length) < 5){
+            $('#name_error').text('Minimum length should be more than 5')
+            $('#name').css('background-color','#fdd0d0')
+            $('#name').removeClass('border-info').addClass('border-danger ')
+           
+            name_submit = false
+        }else{
+            name_submit = true
+            $('#name_error').text('')
+            $('#name').css('background-color','white')
+            $('#name').addClass('border-info ').removeClass('border-danger')
+
+        };};});
+
+
+
+
+
+       // account1 validation===========
+
+       $('#account1').keyup(function(){
+            let account1 = $('#account1').val();
+            let account2 = $('#account2').val();
+
+            if(account1 == ''){
+            $('#account1_error').text('This field is required')
+            $('#account1').css('background-color','#fdd0d0')
+            $('#account1').removeClass('border-info').addClass('border-danger ')
+            account_submit = false
+
+        }else{
+
+            if(((Object.keys(account1).length) >= 18) || ((Object.keys(account1).length) < 1) ){
+            $('#account1_error').text('please enter a valid number')
+            $('#account1').css('background-color','#fdd0d0')
+            $('#account1').removeClass('border-info').addClass('border-danger ')
+            account_submit = false
+        }
+        
+        else{
+            account_submit = true
+            $('#account1_error').text('')
+            $('#account1').css('background-color','white')
+            $('#account1').addClass('border-info ').removeClass('border-danger')
+            if(account1 == account2){
+            $('#account2_error').text('')
+            $('#account2').css('background-color','white')
+            $('#account2').addClass('border-info ').removeClass('border-danger')
+            }
+
+        };
+        };
+        
+    });
+
+
+       // account2 validation===========
+
+        $('#account2').keyup(function(){
+            let account2 = $('#account2').val();
+
+        if(account2 == ''){
+            $('#account2_error').text('This field is required')
+            $('#account2').css('background-color','#fdd0d0')
+            $('#account2').removeClass('border-info').addClass('border-danger ')
+            account_submit = false
+
+        }else{
+
+            if(((Object.keys(account2).length) >= 18) || ((Object.keys(account2).length) < 1) ){
+            $('#account2_error').text('please enter a valid number')
+            $('#account2').css('background-color','#fdd0d0')
+            $('#account2').removeClass('border-info').addClass('border-danger ')
+            account_submit = false
+        }else{
+            account_submit = true
+            $('#account2_error').text('')
+            $('#account2').css('background-color','white')
+            $('#account2').addClass('border-info ').removeClass('border-danger')
+
+        };
+        };
+       
+        
+    });
+
+
+       // both account validation===========
+
+        $('#account2').keyup(function(){
+            let account1 = $('#account1').val();
+            let account2 = $('#account2').val();
+
+            if (account1 != account2){
+            $('#account2_error').text('Account doesnot match')
+            $('#account2').css('background-color','#fdd0d0')
+            $('#account2').removeClass('border-info').addClass('border-danger ')
+            account_submit = false
+            }else{
+                account_submit = true
+                $('#account2_error').text('')
+                $('#account2').css('background-color','white')
+                $('#account2').addClass('border-info ').removeClass('border-danger')
+            };
+
+       
+        
+    });
+
+
+
+       // IFSC validation===========
+
+        $('#ifsc').keyup(function(){
+
+            let ifsc = $('#ifsc').val();
+         
+            if(ifsc == ''){
+            $('#ifsc_error').text('This field is required')
+            $('#ifsc').css('background-color','#fdd0d0')
+            $('#ifsc').removeClass('border-info').addClass('border-danger ')
+            ifsc_submit = false
+        }else{
+            if(ifsc_validation_regexExp.test(ifsc)){
+                $('#ifsc_error').text('')
+                $('#ifsc').css('background-color','white')
+                $('#ifsc').addClass('border-info ').removeClass('border-danger')
+                ifsc_submit = true
+            }else{
+                $('#ifsc_error').text('Please Enter valid IFSC code')
+                $('#ifsc').css('background-color','#fdd0d0')
+                $('#ifsc').removeClass('border-info').addClass('border-danger ')
+                ifsc_submit = false
+            }
+
+        };
+       
+        
+    });
+                
+
+
+       
+
+
+ // Sending api request to create beneficiary
+
+    $('#proceed-btn').click(function () {
+
+        // make visible loading bar
+        $('#loading-background').addClass('visible').removeClass('invisible')
+
+        // fetching all values to create beneficiary
+        let name = $('#name').val();
+        let account1 = $('#account1').val();
+        let account2 = $('#account2').val();
+        let ifsc = $('#ifsc').val();
+        
+        // fetch all details to transfer to  api
+        my_data = { name: name,account1: account1, account2: account2, ifsc: ifsc }
+        
+        // validate if all values are correct and send request to api
+        if((name_submit == true) && (account_submit == true) && (ifsc_submit == true)){
+            $.ajax({
+                url: "{% url 'add_beneficery' %}",
+                method: 'POST',
+                dataType: 'json',
+                data: my_data,
+                success: function (data) {
+                    $('#loading-background').addClass('invisible').removeClass('visible')
+
+                // display message
+                $('#modal_spinner').css('visibility', 'hidden')
+                $('#money-modal-parent').css('visibility', 'hidden')
+                if (data.status == 'm-success') {
+                document.getElementById('message-d').style.opacity = '1'
+                document.getElementById('message-d').style.display = 'flex'
+                document.getElementById('message-c').style.display = 'block'
+                document.getElementById('message-text').style.color = 'green'
+                $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+                }
+                if (data.status == 'm-error') {
+                document.getElementById('message-d').style.opacity = '1'
+                document.getElementById('message-d').style.display = 'flex'
+                document.getElementById('message-c').style.display = 'block'
+                document.getElementById('message-text').style.color = 'red'
+                $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+data.message)
+
+                }
+
+                setTimeout(function () {
+                document.getElementById('message-d').style.opacity = '0'
+                }, 3000)
+                setTimeout(function () {
+                document.getElementById('message-d').style.display = 'none'
+                document.getElementById('message-c').style.display = 'none'
+                if (data.status == 'm-success') {
+                window.location.href = 'http://'+window.location.host+'/'+'intg/withdraw/'
+                };
+                }, 4000)
+                }
+                });
+                }
+
+                else{
+
+                // loading process bar
+                $('#loading-background').addClass('invisible').removeClass('visible')
+
+
+                document.getElementById('message-d').style.opacity = '1'
+                document.getElementById('message-d').style.display = 'flex'
+                document.getElementById('message-c').style.display = 'block'
+                document.getElementById('message-text').style.color = 'red'
+                $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+ 'Details are not correct or  filled correctly')
+
+
+
+                setTimeout(function () {
+                document.getElementById('message-d').style.opacity = '0'
+                }, 3000)
+                setTimeout(function () {
+                document.getElementById('message-d').style.display = 'none'
+                document.getElementById('message-c').style.display = 'none'
+                }, 4000)
+
+                }
+                    
+    });
+
+</script>
+
+{% endblock js %}

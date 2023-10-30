@@ -1,0 +1,53 @@
+{% extends "authentication/auth_base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+  {{block.super}}
+<style>
+  body{
+    background-color: white;}
+</style>
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Log into Trezunt</title>      
+<meta name="description" content="Log into Trezunt to earn money by simple predictions">
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="nofollow" >
+{% endblock seo %}
+
+{% block content %}
+
+<div class="d-flex  parent-box  align-items-center  container justify-content-center">
+    <form action=" "   class="auth-form" method="POST">
+      <div class="text-center logo">  <img style="width: 230px; height: 40px;"   class="" src="{% static 'core/images/dark_logo.png' %}" alt="">
+      </div>
+      {% csrf_token %}
+      <div class=" m-3  input-box d-flex justify-content-center align-items-center">
+          <i class=" text-secondary  fa-solid fa-user"></i>
+          {{form.username}}
+      </div>
+      <div class="m-3   input-box d-flex justify-content-between align-items-center ">
+          <i class=" text-secondary fa-solid fa-lock"></i>
+          {{form.password}}
+      </div>
+      <div class="text-center ">
+        <input  class="button-30" type="submit" value="submit">
+      </div>
+      <div class="text-center m-3">
+          <p class="text-muted   mt-3" >  New here? <a  class="text-reset text-decoration-none rainbow-text " style="font-size: 20px;" href="{% url 'singup' %}">create an account</a> </p>
+          <p class="text-muted   " > <a  class="text-reset text-decoration-none " href="{% url 'reset_password' %}">Forget password</a> </p>
+      </div>
+    </form>
+</div>
+
+
+
+
+
+  
+{% endblock content %}

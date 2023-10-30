@@ -1,0 +1,136 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/reffer_data.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/core.css' %}">
+<style>
+    .form-input{
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+</style>
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Reffer Friend</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+<div class=" aqu-color pb-5 parent-box"  >
+    <div class="text-center py-3 bg-theme">
+        <div class="text-center rainbow-text  py-3">
+            <h3>Total Earned Money By reffer</h3>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="text-center text-light aqu-color mt-3 px-5" style="font-size: 40px;font-family: 'Black Ops One', cursive;" >
+                <img style="height: 40px;" src="{% static 'core/images/gem.png' %}" alt="">  {{ request.user.Reffer_money}}
+            </div>
+        </div>
+    </div>
+
+            
+    <div class="text-center px-4  mt-3 py-2">
+    if you reffer any person you will get their 5% of earning for Life Time
+    </div>
+
+
+     <!-- if user has not register their reffer_by  code  -->
+    {% if request.user.reffer_by == 'none' %}
+   
+    <div class="d-flex my-4  justify-content-center align-items-center">
+        <div class="text-center px-2 py-3 rounded bg-light">
+            <input class="form-input" type="text" placeholder="Enter Unique Reffer Id" name="reffer_by" id="reffer_by" > 
+            <span id="apply" class="button-s-base aqu-color  text-light">Apply</span>
+        </div>
+    </div>
+
+    {% endif %}
+ 
+    <div class="d-flex mt-4  justify-content-center align-items-center">
+        <div class="text-center px-2 py-1 rounded bg-light">
+            <span class="btn top-color shadow">Your Reffer Code</span>
+            <span class="btn top-color shadow"><b>{{request.user.reffer_code}}</b></span>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}
+{% block js %}
+{{block.super}}
+
+
+
+<script>
+
+    $('#apply').click(function(){
+        let ref_id = $('#reffer_by').val()
+        my_data = {value : ref_id}
+
+
+        $.ajax({
+            url: "{% url 'add_reff' %}",
+            method: 'POST',
+            dataType: 'json',
+            data: my_data,
+            success: function (data) {
+               
+
+
+                $('#modal_spinner').css('visibility', 'hidden')
+        $('#money-modal-parent').css('visibility', 'hidden')
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        if (data.status == 'm-error') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > ' +data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+          if (data.status == 'm-success') {
+
+              location.reload();
+          }
+        }, 4000)
+
+    }
+
+        })
+       
+    });
+
+
+
+
+</script>
+  
+{% endblock js %}

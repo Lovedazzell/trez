@@ -1,0 +1,22 @@
+
+
+.bg-content-box{
+    background-color: rgb(236, 236, 236);
+}
+
+
+.profile-form{
+  color: rgba(0, 0, 255, 0);
+}
+
+
+.profile-t-form{
+    outline: none;
+    border:3px solid #808080;
+
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 3px 10px;
+ 
+}
+

@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(12, 26, 54);
+}
+
+
+.settings{
+    min-height: 100vh;
+    background:linear-gradient(180deg,rgb(12, 26, 54),rgb(236, 236, 236),rgb(236, 236, 236)) ;
+}
+
+.bg-content-box{
+    background-color: rgb(236, 236, 236);
+}
+
+
+.profile-form{
+  color: rgba(0, 0, 255, 0);
+}
+
+
+.profile-t-form{
+    outline: none;
+    border:3px solid #198754;
+
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 3px 10px;
+ 
+}
+

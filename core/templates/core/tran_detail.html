@@ -1,0 +1,79 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super}}
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Transitions</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+
+
+
+
+<div class=" py-4 parent-box">
+
+   <div class="container">
+
+        <div class="bg-container  rounded p-2 "  >
+            <h1 class="rainbow-text px-2 py-2" >Transitions Detail</h1>
+          
+            <div class="d-flex justify-content-between ">
+            <p class="text-light">Trantion id</p>
+            <p class="text-light">{{detail.transtion_id}}</p>
+          </div>
+
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Source</p>
+            <p class="text-light">{{detail.desc}}</p>
+          </div>
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Fees</p>
+            <p class="text-danger">₹ -{{detail.fees}}</p>
+          </div>
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Status</p>
+            {% if detail.money == 'debit' %}
+            <p class="text-danger">{{detail.money}}</p>
+            {% else %}
+              <p class="text-success">{{detail.money}}</p>
+            {% endif %}
+          </div>
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Fluctuation</p>
+            {% if detail.money == 'debit' %}
+            <p class="text-danger">₹  -{{detail.fluctuate_gems}}</p>
+            {% else %}
+              <p class="text-success">₹  +{{detail.fluctuate_gems}}</p>
+            {% endif %}
+          </div>
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Closing gems</p>
+            <p class="text-primary">₹  {{detail.updates_gems}}</p>
+          </div>
+
+          <div class="d-flex justify-content-between ">
+            <p class="text-light">Date</p>
+            <p class="text-light">{{detail.created|date:'SHORT_DATETIME_FORMAT'}}</p>
+          </div>
+
+      </div>
+   </div>
+</div>
+
+  
+{% endblock content %}

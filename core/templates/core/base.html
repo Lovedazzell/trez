@@ -1,0 +1,235 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+    {% block seo %}
+      
+
+
+    {% endblock seo %}
+
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/core.css' %}">
+    <link rel="icon" href="{% static 'core/images/sqr_logo.jpg' %}" type="image/x-icon"/>
+    <link
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    {% endblock css %}
+
+    <style>
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .msg {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        transition: 2s;
+      }
+
+      .msg-cancle {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        transition: 0.5s;
+      }
+      .msg-content-1 {
+        width: 10px;
+        transition: 1s;
+      }
+      .msg-content-2 {
+        width: 10px;
+        transition: 1s;
+      }
+
+      .content {
+        position: fixed;
+        bottom: 55px;
+        right: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'core/sidePanel.html' %}
+
+    <!-- loading panel -->
+    <div class="d-flex justify-content-center invisible align-items-center" id="loading-background"  style=" position: fixed;  z-index: 8; width: 100vw; height: 100vh; background-color: rgba(255, 255, 255, 0.274); " >
+
+      <div class="text-center">
+        <img class="bg-light rounded-circle" src="{% static 'core/images/loading_gear.gif' %}" alt="" />
+        <p class="text-dark">Please wait</p>
+      </div>
+    </div>
+
+    <!-- Top bar for every screen -->
+
+    <div class="d-flex justify-content-between top">
+      
+        
+      {% block page_title %}
+   
+      <span onclick="sidebar()"  id="side-menu"  style="display: none;z-index: 5;"  class="  m-3  position-relative">
+       <i    class="  fa-solid fa-bars text-light fa-2xl "> </i> 
+       
+        <span id="announce-bandage" class=" d-none position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-danger rounded-circle">
+          <span class="visually-hidden">New alerts</span>
+        </span>
+      </span>
+
+   <i  onclick="history.back()"  id="side-back"  style="display: none;"    class="fa-solid fa-chevron-left text-light fa-2xl m-3"></i>
+
+      <img  style="width: 230px; height: 40px" class="mt-2" src="{% static 'core/images/logo.png' %}" alt=""  />
+      {% endblock page_title %}
+    </div>
+
+    <!-- message display -->
+
+    <div id="message-d" class="message justify-content-center"  style="width: 100%"  >
+      <div id="message-c"  class="message-c bg-light shadow text-center rounded" style="width: 90%"  >
+        <p id="message-text" class="mt-3"></p>
+      </div>
+    </div>
+
+    <!-- backend message display -->
+    {% if messages %} {% for message in messages %}
+
+    <div id="message-b" class="v-message d-flex justify-content-center" style="width: 100%"  >
+      <div class="message-m shadow text-center rounded" style="width: 90%">
+        <div class="change-position">
+          {% if message.tags %}
+          <div id="span-btn">
+            <i class="s-b-c px-2 fa-xl mx-1 mt-1 fa-solid fa-xmark"></i>
+          </div>
+
+          {% if message.tags == 'success' %}
+
+          <p  id="message-text"  {% if message.tags %}  class=" px-2 text-{{message.tags}} mt-3 "  {% endif  %} >
+            <img style="height: 40px" src="{% static 'core/images/success.png' %}" />
+            {{ message}}
+          </p>
+          {% else %}
+          <p  id="message-text"  {% if message.tags  %} class="px-2 text-{{message.tags}} mt-3" {% endif  %} >
+            <img  style="height: 40px" src="{% static 'core/images/error.png' %}" />
+            {{ message}}
+          </p>
+
+          {% endif %} {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% endfor %} {% endif %}
+
+ 
+
+    <!-- main content for screen -->
+    {% block content %} {% endblock content %}
+
+    <!-- content for authentication block -->
+    <div class="bg-light">{% block auth %} {% endblock auth %}</div>
+
+    {% include "core/footer.html" %}
+    {% block js %}
+
+    <script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.js' %}"></script>
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/popper.js' %}"></script>
+    <script src="{% static 'core/js/all.js' %}"></script>
+
+    <script>
+
+
+
+      $("#msg-cancle").click(function () {
+        $("#msg-btn-parent").removeClass("d-flex").addClass("d-none");
+        $("#full-content").css("height", "0px");
+        $("#msg-cancle").css("right", "25px");
+        $("#full-content").css("opacity", "o");
+      });
+
+      $("#span-btn").click(function () {
+        $("#message-b").removeClass("d-flex").addClass("d-none");
+      });
+
+      let msg = "close";
+
+      $("#msg").click(function () {
+        // if message is close
+        if (msg == "close") {
+          $("#full-content").removeClass("d-none").addClass("d-block");
+          $("#full-content").css("height", "340px");
+          $("#full-content").css("opacity", "1");
+          $("#msg-cancle").css("right", "90px");
+          msg = "open";
+        }
+
+        // if message is open
+        else {
+          $("#full-content").css("height", "0px");
+          $("#msg-cancle").css("right", "30px");
+          $("#full-content").css("opacity", "o");
+          msg = "close";
+        }
+      });
+
+
+      let path = window.location.pathname
+     
+      if(path == '/profile/' | path == '/tmc/' | path == '/settings/' | path == '/'){
+      
+        $('#side-menu').css('display','block')
+        $('#side-back').css('display','none')
+      }else{
+      
+        $('#side-back').css('display','block')
+        $('#side-menu').css('display','none')
+
+      }
+
+      let n_kw = "{{request.user.reffer_code}}";
+      var ws_scheme = window.location.protocol == 'https:' ? "wss" :'ws';
+      if(window.location.host == '127.0.0.1:8000'){
+
+        var ws_path = ws_scheme + '://' +window.location.host + '/';
+      }else{
+
+        var ws_path = ws_scheme + '://' +window.location.host + ':8001/';
+      }
+      let n_socket = new WebSocket(ws_path + "ws/noti/" );
+
+      n_socket.onopen = function (e) {
+    
+      };
+
+      n_socket.onmessage = function (e) {
+      
+        $("#announce-bandage").removeClass("d-none")
+        $("#panel-announce-bandage").removeClass("d-none")
+      };
+
+      n_socket.onclose = function (e) {};
+    </script>
+
+    {% endblock js %}
+  </body>
+</html>

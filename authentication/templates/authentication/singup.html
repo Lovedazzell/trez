@@ -1,0 +1,215 @@
+{% extends "authentication/auth_base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+  {{block.super}}
+  <style>
+    body{
+      background-color: white;}
+  </style>
+{% endblock css %}
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Sign up for Trezunt</title>      
+<meta name="description" content="Sign up to create account in Trezunt">
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="nofollow" >
+{% endblock seo %}
+
+
+{% block content %}
+
+
+
+
+
+    {% if messages %}
+  {% for message in messages  %}
+    <div class="container">
+        <div class="alert   alert-success">{{message}}</div>
+    </div>
+  {% endfor %}
+{% endif %}
+    
+<div class="d-flex  parent-box  align-items-center  container justify-content-center">
+    <form onsubmit="return validate()"   class="auth-form" method="POST" novalidate>
+        <div class="text-center logo">
+           <img style="width: 230px; height: 40px;"   class="" src="{% static 'core/images/dark_logo.png' %}" alt="">
+        </div>
+        {% csrf_token %}
+        <div style="padding: 0px 10px;" id="email-border" class=" m-3 input-box d-flex justify-content-between align-items-center">
+          <i class= " text-secondary fa-solid fa-at"></i>
+          {{form.email}}
+        </div>
+
+        <p style="font-size: 12px;" id="email-error" class=" mx-5 text-danger"></p>
+
+        <div style="padding: 0px 10px;" id="username-border" class="  m-3 input-box d-flex justify-content-between align-items-center">
+              <i class=" text-secondary  fa-solid fa-user"></i>
+              {{form.username}}
+        </div>
+
+        <p style="font-size: 12px;" class=" mx-5 text-danger" id="name_error"></p>
+
+        <div style="padding: 0px 10px;" id="password1-border"  class=" m-3 input-box d-flex justify-content-between align-items-center">
+            <i class=" text-secondary fa-solid fa-lock"></i>
+              {{form.password1}}
+        </div> 
+
+        <p style="font-size: 12px;" id="password1-error" class=" mx-5 text-danger"></p>
+        <p style="font-size: 12px;" id="password2-error" class=" mx-5 text-danger"></p>
+        <p style="font-size: 12px;" id="password3-error" class=" mx-5 text-danger"></p>
+        <p style="font-size: 12px;" id="password4-error" class=" mx-5 text-danger"></p>
+
+        <div  style="padding: 0px 10px;" id="password2-border" class=" m-3 input-box d-flex justify-content-between align-items-center">
+          <i class=" text-secondary fa-solid fa-lock"></i>
+            {{form.password2}}
+        </div> 
+
+        <p style="font-size: 12px;"  id="password5-error" class=" mx-5 text-danger"></p>
+
+        <div class="text-center ">
+          <input  class="button-30" type="submit" value="submit">
+        </div>
+       
+        <div class="text-center m-3">
+           <p class="text-muted  m-3" > 
+             Already member?
+            <a  class="text-reset text-decoration-none rainbow-text " style="font-size: 20px;"  href="{% url 'login' %}">
+            login from here</a>
+            </p>
+        </div>
+    </form>
+</div>
+
+
+
+ 
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+
+<script>
+const email_validation_regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const password_validation_regexExp = /^(?=.*[0-9])(?=.*[- ?!@#$%^&*\/\\])(?=.*[A-Z])(?=.*[a-z])[a-zA-Z0-9- ?!@#$%^&*\/\\]{8,30}$/;
+
+
+
+// Email validation
+function email_validate(){
+  let c_email = $('#email-update').val();
+if(c_email == ''){
+$('#email-error').text('This field is required')
+$('#email-border').css('background-color','#fdd0d0')
+return false;
+}else{if (email_validation_regexExp.test(c_email)){
+    $('#email-error').text('')
+    $('#email-border').css('background-color','white')
+    return true;
+}else{
+    $('#email-error').text('Please enter a valid number')
+    $('#email-border').css('background-color','#fdd0d0')
+    return  false;}
+};};
+
+
+
+// username validation
+
+function username_validate(){
+  let name = $('#username').val();
+    if(name == ''){
+    $('#name_error').text('This field is required')
+    $('#username-border').css('background-color','#fdd0d0')
+   return false;
+}
+else{
+if ((Object.keys(name).length) < 5   || (Object.keys(name).length) > 15 ){
+    $('#name_error').text('Minimum length should be between 5-10')
+    $('#username-border').css('background-color','#fdd0d0')
+    return false;
+}else{
+    $('#name_error').text('')
+    $('#username-border').css('background-color','white')
+    return true;
+};}; 
+};
+
+
+
+// password 1 validation
+
+function password_validation(){
+            let pwd1 = $('#password1').val();
+            if(pwd1 == ''){
+            $('#password1-error').text('This field is required')
+            $('#password2-error').text('')
+            $('#password3-error').text('')
+            $('#password4-error').text('')
+            $('#password1-border').css('background-color','#fdd0d0')
+            return false;
+          }else{
+            if  (password_validation_regexExp.test(pwd1)){
+              $('#password1-error').text('')
+              $('#password2-error').text('')
+              $('#password3-error').text('')
+              $('#password4-error').text('')
+              $('#password1-border').css('background-color','white')
+              return true;
+            }else{ 
+              $('#password1-error').text('Must have 8 characters')
+              $('#password2-error').text('At least one capital letter')
+              $('#password3-error').text('At least one special character')
+              $('#password4-error').text('At least one numeric letter')
+              $('#password1-border').css('background-color','#fdd0d0')
+              return false;
+        }; }; };
+
+
+// password2  validation
+function both_pwd_validate(){
+          let pwd1 = $('#password1').val();
+          let pwd2 = $('#password2').val();
+          if (pwd2 == ""){
+              $('#password5-error').text('This field is required')
+              $('#password2-border').css('background-color','#fdd0d0')
+              return false;
+          }else{
+            if(pwd1 != pwd2){
+              $('#password5-error').text('Password doesnot match')
+              $('#password2-border').css('background-color','#fdd0d0')
+              return false;
+            }else{
+              return true;
+              $('#password5-error').text('')
+              $('#password2-border').css('background-color','white')
+          };  };};
+
+
+
+
+function validate(){
+ email_validate()
+  username_validate()
+  password_validation()
+  both_pwd_validate()
+  if(email_validate() == true  && username_validate() == true   &&  password_validation() ==  true &&  both_pwd_validate() == true){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+
+</script>
+
+
+    {% endblock js %}

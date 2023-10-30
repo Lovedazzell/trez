@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap');
+
+/* reffer font */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+
+html,body {
+    height: 100%;
+}
+
+:root{
+    
+    --color:rgb(12, 26, 54);
+    --green:rgb(33, 58, 5);
+    /* --blue:rgb(5, 11, 58); */
+}
+
+
+
+
+
+.bg-blue{
+    background-color: var(--blue);
+}
+
+
+
+#modal_spinner{
+    visibility: hidden;
+}
+
+
+.top{
+
+    background-color: var(--color)
+}
+
+.top-color{
+
+    color: var(--color)
+}
+
+.dashboard{
+    background-color: var(--color);
+    padding-bottom: 40px;
+}
+
+
+.s-b-c{
+position: absolute;
+right: 0px;
+top: 0px;
+}
+
+.change-position{
+    position: relative;
+}
+
+
+.side-ul{
+list-style-type: none;
+
+}
+
+.modal-error{
+    margin-top: 20px    ;
+    width: auto;
+    display: none;
+
+}
+
+.bg-acre{
+    background-color: aliceblue;
+}
+
+.side-link{
+    color: rgb(238, 238, 238);
+    text-decoration: none;
+}
+.side-link:hover{
+    color: aqua;
+    transition: 1s;
+}
+.side-item{
+    font-size: 30px;
+     
+}
+
+
+
+
+.btn-color{
+    background-color: rgba(86,86,140,255)
+    
+}
+
+.hr{
+    background:linear-gradient(to right,rgba(255, 255, 255, 0), rgb(0, 0, 0),rgba(236, 236, 236, 0)) ;
+}
+
+
+
+#color_btn{
+    display: none;
+}
+
+
+#number_btn{
+display: none;
+}
+
+.countdoun-number{
+    font-size: 90px;
+    text-align: center;
+    font-family: 'Black Ops One', cursive;
+  
+   
+}
+
+.treasure{
+   
+    width: 100%;
+    text-align: center;
+}
+
+.countdown{
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 8rem;
+    width: auto;
+    min-width: 200px;;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.group{
+    
+    display: grid;
+}
+.number{
+    padding: 14px;
+}
+.bg-green{
+    background-color: var(--green);
+}
+.bg-blue{
+    background-color: var(--blue);
+}
+
+
+.grey{
+    background-color:rgb(231, 231, 231);
+    color: rgb(36, 36, 36);
+}
+
+.panel{
+    height: 100%;
+    background-color: rgba(4, 4, 78, 0.808);
+    position:fixed;
+    width: 100vw;
+    z-index: 8;
+    visibility: hidden;
+}
+
+.message{
+    position: fixed;
+    z-index: 9;
+    
+    display: none;
+    opacity: 1;
+    transition: 1s;
+   
+    
+}
+
+.message-c{
+    display: none;
+}
+
+
+
+
+.v-message{
+    position: fixed;
+    z-index: 9;
+    visibility: visible;
+    opacity: 1;
+    transition: 1s;
+   
+    
+}
+
+.message-m{
+     background-color: #efefef
+}
+
+.message-text{
+    color: green;
+}
+
+.money-modal-parent{
+    position: fixed;
+    z-index: 8;
+    width: 100vw;
+    bottom: 0;
+    height: 100%;
+    visibility:hidden;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.548);
+    justify-content: center;
+
+}
+
+.modal-heade{
+background-color: var(--color);
+}
+
+.modelhead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.money-modal{
+    background-color: rgb(255, 255, 255);
+
+
+    height: auto;
+    width: 80%;
+}
+
+.pink{
+    background-color: rgb(97, 125, 252);
+}
+.pink:hover{
+    background-color: rgb(68, 102, 250);
+}
+
+
+
+
+
+
+
+/* bubbel effect */
+
+ 
+  .bubbles{
+    position:absolute;
+    width:100%;
+    height: calc(100% + 49px);
+    height: -o-calc(100% + 49px); 
+    height: -webkit-calc(100% + 49px); 
+    height: -moz-calc(100% + 49px); 
+    z-index:0;
+    overflow:hidden;
+    top:0;
+    left:0;
+  }
+  .bubble{
+    position: absolute;
+    bottom:-100px;
+    width:40px;
+    height: 40px;
+    background:#f1f1f1;
+    border-radius:50%;
+    opacity:0.5;
+    animation: rise 10s infinite ease-in;
+  }
+  .bubble:nth-child(1){
+    width:40px;
+    height:40px;
+    left:10%;
+    animation-duration:8s;
+  }
+  .bubble:nth-child(2){
+    width:20px;
+    height:20px;
+    left:20%;
+    animation-duration:5s;
+    animation-delay:1s;
+  }
+  .bubble:nth-child(3){
+    width:50px;
+    height:50px;
+    left:35%;
+    animation-duration:7s;
+    animation-delay:2s;
+  }
+  .bubble:nth-child(4){
+    width:80px;
+    height:80px;
+    left:50%;
+    animation-duration:11s;
+    animation-delay:0s;
+  }
+  .bubble:nth-child(5){
+    width:35px;
+    height:35px;
+    left:55%;
+    animation-duration:6s;
+    animation-delay:1s;
+  }
+  .bubble:nth-child(6){
+    width:45px;
+    height:45px;
+    left:65%;
+    animation-duration:8s;
+    animation-delay:3s;
+  }
+  .bubble:nth-child(7){
+    width:90px;
+    height:90px;
+    left:70%;
+    animation-duration:12s;
+    animation-delay:2s;
+  }
+  .bubble:nth-child(8){
+    width:25px;
+    height:25px;
+    left:80%;
+    animation-duration:6s;
+    animation-delay:2s;
+  }
+  .bubble:nth-child(9){
+    width:15px;
+    height:15px;
+    left:70%;
+    animation-duration:5s;
+    animation-delay:1s;
+  }
+  .bubble:nth-child(10){
+    width:90px;
+    height:90px;
+    left:25%;
+    animation-duration:10s;
+    animation-delay:4s;
+  }
+  @keyframes rise{
+    0%{
+      bottom:-100px;
+      transform:translateX(0);
+    }
+    50%{
+      transform:translate(100px);
+    }
+    100%{
+      bottom:1080px;
+      transform:translateX(-200px);
+    }
+  }
+
+
+
+/* flex box for dashboard icons */
+.block-flex{
+    width: 50vw;
+    }
+/* change dashboard style */
+.text-style{
+    font-family: 'EB Garamond', serif;
+}
+
+/* reffer dashboard */
+.reffer-dashboard{
+    background-color: #ff00d4;
+    color: white;
+
+}
+
+/* to change index */
+.ch-index{
+    z-index: 5;
+}
+
+
+/* animation logo */
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+.animation-logo {
+    background: black;
+    font-size: 144px;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+	stroke: #00d1ce;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: #2dd700;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: #c0fb00;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: #ff00fa;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: #ac31fd;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+

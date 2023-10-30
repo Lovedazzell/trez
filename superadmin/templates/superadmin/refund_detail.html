@@ -1,0 +1,104 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Support Detail</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2 notification"  >
+
+ 
+{% include "superadmin/admin_nav.html" %}
+<div class="row">
+
+<div class="bg-light rounded p-5 col-6">
+   
+<h5 class="">Email : {{tran_data.user}}</h5>
+<h5 class="" >Tran Id : {{tran_data.transtion_id}}</h5>
+<p class=""><b>Status :</b> {{tran_data.status}}</p>
+<p class=""><b>Mode :</b> {{tran_data.desc}}</p>
+<p class=""><b>Money :</b> {{tran_data.money}}</p>
+<p class=""><b>Fluctuation :</b> {{tran_data.fluctuate_gems}}</p>
+<p class=""><b>Fee :</b> {{tran_data.fees}}</p>
+<p class=""><b>Created :</b> {{tran_data.created}}</p>
+
+</div>
+
+<div class="bg-light rounded p-5 col-6">
+  
+<h5 class="my-4">Amount   <span class="border border-info bg-info p-1 rounded" > {{order_data.amount}} </span> </h5> 
+<h5 class="my-4" >Amount Paid <span class="border border-info bg-info p-1 rounded" >   {{order_data.amount_paid}} </span> </h5>
+<p class="my-4"><b>Amount Due  <span class="border border-info bg-info p-1 px-3 rounded" >  {{order_data.amount_due}} </span> </p></b> 
+<p class="my-4"><b>Status  <span class="border border-info bg-info p-1 px-3 rounded" > {{order_data.status}}</span>    </p></b> 
+<p class="my-4"><b>Attempts  <span class="border border-info bg-info p-1 px-3 rounded" >  {{order_data.attempts}}</span> </p></b> 
+
+</div>
+
+
+</div>
+
+
+<!-- refund verify modal -->
+<div>
+<!-- Button trigger modal -->
+<button type="button" class=" mx-5 my-3  btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Refund money
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Verify Refund</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Are you sure. that you want to refund money
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <a href="{% url 'process_refund'  tran_data.transtion_id %}"><button type="button" class="btn btn-dark">Yes</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit"  class="btn mx-5 my-3 btn-success "  value="Close Ticket">
+</form>
+</div>
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+
+  </script>
+{% endblock js %}

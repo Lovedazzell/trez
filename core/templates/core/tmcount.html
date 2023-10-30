@@ -1,0 +1,328 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/tmc.css' %}">
+
+
+{% endblock css %}
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt </title>      
+<meta name="description" content="Trezunt is the best online earning space where you can try your luck and earn instant money">
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="nofollow" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{% include 'core/model.html' %}
+
+{{block.super}}
+
+
+
+<div class="tmc-container">
+  <!-- top color section -->
+  <div class="loading-bar py-5 bg-theme px-3" >
+    <!-- progress bar -->
+    <div class="progress ">
+      <div class="progress-value "></div>
+    </div>
+
+    <div class="text-center my-4">
+      <h1 id="main-numbers" class="text-style  rainbow-text" style="font-size: 3rem;font-weight: 600;" >
+        {{sec}}
+      </h1>
+    </div>
+
+    <button class="bg-light"  style="padding: 7px 26px;border: none;outline: none;">
+      <img style="height: 30px;" src="{% static 'core/images/gem.png' %}" alt="">
+      <span id="player-gems" >{{request.user.gems}}</span>
+    </button>
+  </div>
+
+  <!--recent and global history box -->
+  <div class="row row-fine">
+
+    <div class="col-md-6 py-3 aqu-color" >
+      <h2 class="text-style px-3">
+        Recent Spents
+      </h2>
+      <div class="container">
+        <div class="d-flex justify-content-evenly">
+          <span class="p-box bg-light">
+            <img style="height: 25px;" src="{% static 'core/images/gem.png' %}" alt="">
+          <span id="recent_gems"   >{{data.gems}}</span>
+          </span>
+          <span id="rec_content"  class="p-box text-light" >{{data.content_name}}</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-6 py-3 sky-color" >
+      <h2 class="text-style px-3">
+        Global History
+      </h2>
+      <div class="container">
+        <div class="d-flex justify-content-evenly">
+          <span class="h-padding bg-light " id="history_time" >{{ history_data.created|time:"h:i" }}</span>
+          <span class="h-padding blue-color  text-light "id="history_number" >{{history_data.number}}</span>
+          <span class="h-padding text-light "id="history_color"  >{{history_data.color}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="py-2 text-center bg-light text-muted" style="margin-bottom: 0rem;">BIT NOW!</h1>
+
+  <!-- store value -->
+  <h1 style="display: none;"  id="contentx"></h1>
+  <h1 style="display: none;"  id="contenty"></h1>
+
+
+
+  <!-- below section -->
+  <div class="row row-fine"  id="button_box" style="background: #f0f0f0;">
+
+
+    <!-- color prediction -->
+    <div class="col-md-5 py-4">
+      <h3 class="text-style px-3" >Predict Color</h3>
+      <div class="container">
+        <div class="d-flex justify-content-evenly">
+        
+          <span onclick="(confirm('color','green'))"  class='button-29' style="background-image: radial-gradient(100% 100% at 100% 0, #7cfa97 0, #01910d 100%);" > Green</span>
+          <span  onclick="(confirm('color','blue'))"   class='button-29'  > Blue</span>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Number prediction -->
+    <div class="col-md-7 py-4">
+      <h3 class="text-style px-3" >Predict Number</h3>
+
+      <div class="container">
+        <div class="row row-fine">
+   
+          <div class="col-lg-6 my-4  text-center ">
+            <span  onclick="(confirm('num',0))"  class="button-30"  >0</span>
+            <span  onclick="(confirm('num',1))"  class="button-30 ">1</span>
+            <span  onclick="(confirm('num',2))"  class="button-30 ">2</span>
+            <span  onclick="(confirm('num',3))"  class="button-30 ">3</span>
+            <span  onclick="(confirm('num',4))"  class="button-30 ">4</span>
+          </div>
+
+          <div class="col-lg-6 my-4 text-center ">
+            <span  onclick="(confirm('num',5))"  class="button-30 ">5</span>
+            <span  onclick="(confirm('num',6))"  class="button-30 ">6</span>
+            <span  onclick="(confirm('num',7))"  class="button-30 ">7</span>
+            <span  onclick="(confirm('num',8))"  class="button-30 ">8</span>
+            <span  onclick="(confirm('num',9))"  class="button-30 ">9</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center bg-light" >
+    <div class="text-center py-2">
+      <a href="{% url 'gemshistory' %}" class="text-decoration-none">
+        <button class='button-30 mx-1' >Your Spents</button>
+      </a>
+      <a href="{% url 'world_history' %}" class="text-decoration-none" >
+      <button class='button-30' >All Record</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}
+
+{% block js %}
+  
+{{block.super}}
+
+
+
+
+
+<script>
+var sec_data = '{{sec}}'
+
+if(parseInt(sec_data) <= 5){
+          $('#loading-background').addClass('visible').removeClass('invisible')
+        }else{
+          $('#loading-background').addClass('invisible').removeClass('visible')
+        }
+
+
+// countinouse countdown channel
+
+    var ws_scheme = window.location.protocol == 'https:' ? "wss" :'ws';
+      if(window.location.host == '127.0.0.1:8000'){
+
+        var ws_path = ws_scheme + '://' +window.location.host + '/';
+      }else{
+
+        var ws_path = ws_scheme + '://' +window.location.host + ':8001/';
+      }
+      let c_socket = new WebSocket(ws_path + "ws/countdown" );
+
+      c_socket.onopen = function (e) {
+     
+      };
+
+      c_socket.onmessage = function (e) {
+        function percentage(partialValue, totalValue) {
+          let data =  Math.ceil((100 * partialValue) / totalValue);
+          let parse = data.toString()+'%'
+          return parse;
+        }
+
+        let recent_raw_data = JSON.parse(e.data);
+        let payload = recent_raw_data.payload;
+        let seconds = parseInt(payload.sec)
+       
+        if(seconds >= 173){
+          $('#loading-background').addClass('visible').removeClass('invisible')
+        }else{
+          $('#loading-background').addClass('invisible').removeClass('visible')
+        }
+        let reverse_sec = 177 - seconds
+        $('#main-numbers').text(reverse_sec)
+        let pre = percentage(seconds,177)
+        $('.progress-value').css('width',pre)
+      };
+
+      c_socket.onclose = function (e) {};
+
+
+
+
+// recent data
+let rec_sub = '{{data.sub_content_name}}'
+let rec_content = '{{data.content_name}}'
+
+
+if(rec_sub == 'color'){
+
+  if(rec_content == 'green'){
+    $('#rec_content').addClass('green-color')
+  }else{
+    $('#rec_content').addClass('blue-color')
+  }
+}else {
+  $('#rec_content').addClass('blue-color')
+}
+
+
+
+// history color change
+let hist_color = '{{history_data.color}}'
+if(hist_color == 'green'){
+  $('#history_color').addClass('green-color')
+}else{
+  $('#history_color').addClass('blue-color')
+}
+
+
+
+let user = '{{request.user.reffer_code}}'
+
+
+let socket = new WebSocket(ws_path+'ws/gems/'+ user) 
+
+socket.onopen = function(e){
+ 
+}
+
+socket.onmessage = function(e){
+
+
+  
+  let recent_raw_data = JSON.parse(e.data)
+  let payload = recent_raw_data.payload
+
+  $('#recent_gems').text(payload.gems)
+  $('#player-gems').text(payload.player_gems)
+  $('#rec_content').text(payload.content_name)
+  
+
+// chnage content background
+  if(payload.sub_content_name == 'color'){
+
+  if(payload.content_name == 'green'){
+    $('#rec_content').addClass('green-color').removeClass('blue-color')
+  }else{
+    $('#rec_content').addClass('blue-color').removeClass('green-color')
+  }
+  }else {
+  $('#rec_content').addClass('blue-color').removeClass('green-color')
+  }
+
+
+
+
+}
+
+socket.onclose = function(e){
+ 
+}
+
+
+
+// latest_history
+
+let history_socket = new WebSocket(ws_path+'ws/latest_history') 
+
+history_socket.onopen = function(e){
+
+}
+
+history_socket.onmessage = function(e){
+
+
+  let recent_history_data = JSON.parse(e.data)
+  let history_payload = recent_history_data.payload
+
+  // chnage date of created
+  $('#history_time').text(history_payload.created)
+ 
+//  change number 
+  $('#history_number').text(history_payload.number)
+
+
+  // change color
+  if(history_payload.color == 'green'){
+    $('#history_color').addClass('green-color').removeClass('blue-color')
+  }else{
+    $('#history_color').addClass('blue-color').removeClass('green-color')
+  }
+  $('#history_color').text(history_payload.color)
+
+  
+}
+
+history_socket.onclose = function(e){
+
+}
+
+</script>
+
+{% include "core/ajax.html" %}
+
+
+{% endblock js %}

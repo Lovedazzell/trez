@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.auth{
+  min-height: 100vh;
+  width: 100vw;
+  background:linear-gradient(180deg,rgb(236, 236, 236) ,rgb(255, 255, 255),rgb(255, 255, 255)) ;
+
+    
+}
+
+.row input{
+    border: none;
+    outline: none;
+    padding: 9px 9px;
+    border-bottom: 2px solid grey;
+    background: transparent;
+    
+}
+
+.theme-btn{
+    background-color: rgb(12, 26, 54);
+    color: white;
+}
+
+
+.google{
+    border: none;
+    outline: none;
+    padding: 4px  10px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px grey;
+}
+
+.icon{
+    width: 30px;
+}
+
+.auth-password , .auth-username {
+
+border: none;
+outline: none;
+background: transparent;
+padding: 4px 15px;
+}
+
+.login-button{
+    padding: 6px 50px;
+    border: none;
+    border-radius: 40px;
+    background-color: rgb(12, 26, 54);
+    color: white;
+  
+}
+
+
+.logo{
+    margin-bottom: 60px;
+}
+
+.fullbox{
+    height: 100vh;
+}

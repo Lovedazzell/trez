@@ -1,0 +1,42 @@
+
+{% load static %}
+<!-- this code is for sidebar -->
+<div id="sidebar" class="panel" style="z-index: 50;">
+    <i onclick="sidebarclose()"   class="fa-solid fa-circle-xmark text-light fa-2xl my-4 mx-3"></i>
+  
+        <ul class="container side-ul "  style="z-index: 20;">
+            <li class="my-3 side-item text-center"> <img style="height: 120px;"  class="rounded"   src="{{request.user.profile_image.url}}" alt="">  </li>
+            {% if request.user.is_superuser %}
+              
+            <li class="side-item text-center"><a  class="side-link" href="{% url 'live_data' %}"><i class="fa-solid fa-rotate"></i> Live Sync</a></li>
+            {% endif %}
+            
+            <li class="side-item text-center"><a  class="side-link" href="{% url 'profile' %}"><i class="fa-solid  fa-xs fa-house"></i> Home</a></li>
+            <li class="side-item text-center"><a class="side-link"  href="{% url 'edit_profile' %}"> <i class="fa-solid fa-user fa-xs  mx-1"></i>Profile</a></li>
+           
+            <li class="side-item text-center"><a class="side-link"  href="{% url 'settings' %}"><i class="fa-solid fa-hammer mx-1"></i>Settings</a></li>
+           
+           <span class=" position-relative" >
+            <li class="side-item text-center">
+                <a class="side-link position-relative"  href="{% url 'notifications' %}"> 
+                    <i class="fa-solid fa-scroll"></i>
+                    Announcement
+                    <span id="panel-announce-bandage" class=" d-none position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-danger rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                      </span>
+                </a>
+            </li>
+          
+           </span>
+
+
+            <li class="side-item text-center"><a class="side-link"  href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket mx-1"></i>Logout</a></li>
+        </ul>
+   
+  </div>
+
+
+  <!-- this code is for modeal -->
+
+
+ 

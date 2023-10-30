@@ -1,0 +1,135 @@
+{% load static %}
+
+<script>
+
+
+
+
+  // Ajax==================================
+
+
+  const confirm = (x, y) => {
+
+    if (x == 'color') {
+      document.getElementById('number_btn').style.display = 'none'
+      document.getElementById('color_btn').style.display = 'block'
+
+    } else {
+      document.getElementById('color_btn').style.display = 'none'
+      document.getElementById('number_btn').style.display = 'block'
+
+    }
+
+    document.getElementById('contentx').innerHTML = x
+    document.getElementById('contenty').innerHTML = y
+    document.getElementById('money-modal-parent').style.visibility = 'visible'
+
+    let h = document.getElementById('number').innerHTML
+    document.getElementById('info').innerHTML = 'You choose ' + y
+  };
+
+
+
+  // buy color request
+
+  $('#color_purchase').click(function () {
+    $('#modal_spinner').css('visibility', 'visible')
+    let x = $('#contentx').text();
+    let y = $('#contenty').text();
+    let total = $('#total').text();
+    
+    my_data = { xdata: x, ydata: y, total_data: total }
+
+    $.ajax({
+      url: "{% url 'spent_gems' %}",
+      method: 'POST',
+      dataType: 'json',
+      data: my_data,
+      success: function (data) {
+        $('#modal_spinner').css('visibility', 'hidden')
+        $('#money-modal-parent').css('visibility', 'hidden')
+        document.getElementById('number').value = 1
+        document.getElementById('total').innerHTML =  10*parseInt(1)
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        if (data.status == 'm-error') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > ' +data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+        }, 4000)
+
+      },
+
+    });
+  });
+
+
+  
+  // buy green number request
+
+  $('#num_purchase').click(function () {
+    $('#modal_spinner').css('visibility', 'visible')
+    let x = "num";
+    let y = $('#contenty').text();
+    let total = $('#total').text();
+    my_data = { xdata: x, ydata: y, total_data: total }
+
+    $.ajax({
+      url: "{% url 'spent_gems' %}",
+      method: 'POST',
+      dataType: 'json',
+      data: my_data,
+      success: function (data) {
+        $('#modal_spinner').css('visibility', 'hidden')
+        $('#money-modal-parent').css('visibility', 'hidden')
+        document.getElementById('number').value = 1
+        document.getElementById('total').innerHTML =  10*parseInt(1)
+        if (data.status == 'm-success') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'green'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/success.png" %}" > '+data.message)
+
+        }
+        if (data.status == 'm-error') {
+          document.getElementById('message-d').style.opacity = '1'
+          document.getElementById('message-d').style.display = 'flex'
+          document.getElementById('message-c').style.display = 'block'
+          document.getElementById('message-text').style.color = 'red'
+          $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > '+data.message)
+
+        }
+
+        setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+        setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+        }, 4000)
+
+      },
+    });
+  });
+
+
+
+</script>

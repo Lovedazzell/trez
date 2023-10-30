@@ -1,0 +1,125 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/transition.css' %}">
+
+{% endblock css %}
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Transitions</title>      
+<meta name="keywords" content="trezunt, online earning, prediction game">
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" p-3 parent-box"  >
+
+      <h1 class="rainbow-text px-2 py-2" >Market Place</h1>
+
+
+      <div class="row g-3">
+
+       
+        <div class="col-md-4  ">
+            <div class="container" style="background-color: white;"">
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                    <img src="{% static 'core/images/p1.jpg' %}" style="width:210px" class="  card-img-top" alt="...">
+                    </div>
+                </div>
+                <p class="card-text text-center py-1" >ZORBES® Mini Printer, Small Pocket Printer Black and White Printing </p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-danger py-1" >Stock out</p>
+                    <p class="text-success py-1" >Gems 2500</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4  ">
+            <div class="container" style="background-color: white;"">
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                    <img src="{% static 'core/images/p2.jpg' %}" style="width:210px" class="  card-img-top" alt="...">
+                    </div>
+                </div>
+                <p class="card-text text-center py-1" >Cezo 40X60 Magnification Zoom HD,Monocular Telescope for Adults and Children </p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-danger py-1" >Stock out</p>
+                    <p class="text-success py-1" >Gems 900</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4  ">
+            <div class="container" style="background-color: white;"">
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                    <img src="{% static 'core/images/p3.jpg' %}" style="width:210px" class="  card-img-top" alt="...">
+                    </div>
+                </div>
+                <p class="card-text text-center py-1" >EvoFox Elite Ops Wireless Gamepad for Android TV, PC (X Input) and PS3 </p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-danger py-1" >Stock out</p>
+                    <p class="text-success py-1" >Gems 1500</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4  ">
+            <div class="container" style="background-color: white;"">
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                    <img src="{% static 'core/images/p4.jpg' %}" style="width:210px" class="  card-img-top" alt="...">
+                    </div>
+                </div>
+                <p class="card-text text-center py-1" >ELECTROPRIME Amazing Orbital Revolving Gadget Perpetual Motion </p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-danger py-1" >Stock out</p>
+                    <p class="text-success py-1" >Gems 2000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4  ">
+            <div class="container" style="background-color: white;"">
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                    <img src="{% static 'core/images/p5.jpg' %}" style="width:210px" class="  card-img-top" alt="...">
+                    </div>
+                </div>
+                <p class="card-text text-center py-1" >Ambrane Glares R Smart Glasses: Blue Light Filtering & UV Protection Dual Sunglass Lenses</p>
+                <div class="d-flex justify-content-between">
+                    <p class="text-danger py-1" >Stock out</p>
+                    <p class="text-success py-1" >Gems 5000</p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+
+       
+
+       
+
+      
+
+      </div>
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  
+{% endblock js %}

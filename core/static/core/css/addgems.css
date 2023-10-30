@@ -1,0 +1,16 @@
+
+
+.amount-field{
+background: transparent;
+border: none;
+outline: none;
+
+}
+
+
+.form{
+    width: auto;
+    padding: 3rem;
+    height:auto;
+    background-color: rgb(255, 255, 255);
+}

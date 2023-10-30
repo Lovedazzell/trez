@@ -1,0 +1,184 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/notification.css' %}">
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Custom day Detail</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" px-2  parent-box"  >
+
+    {% include "superadmin/admin_nav.html" %}
+
+    <div class="text-center text-light my-4 ">
+    Select date
+        <input type="date" name="date" id="date-search" class="px-3 mx-2 py-1"
+        style=" width: 200px;text-align: center ;border: none;outline: none; ">
+        <span class="button-30 text-dark" style="cursor: pointer;" id="show_detail">show</span>
+    </div>
+
+
+    <div id="all_filter" class="d-none" >
+
+        <!-- current day spend -->
+        <div class="d-flex justify-content-around my-4">
+
+            <div  class="">
+                <h1 class="rainbow-text">
+                    Current Day Earning
+                </h1>
+                <p class="text-light">
+                    Total earning from 12 am to 11:59 pm
+                </p>
+            </div>
+            <div id="earning" class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            </div>
+            
+        </div>
+    
+        <hr class="bg-light">
+
+
+        <!-- today money flow -->
+        <div class="d-flex justify-content-around my-4">
+    
+        <div id="cash_flow" class="text-center rounded  text-success shadow   px-3" style="font-size: 70px;background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            
+        </div>
+    
+        <div  class="">
+           <h1 class="rainbow-text">
+                Today Money Flow In App
+            </h1>
+            <p class="text-light">
+                Amount of virtual money spend by users in app
+            </p>
+        </div>
+    
+        </div>
+    
+        <hr class="bg-light">
+    
+        <!-- total bank entries -->
+        <div class="d-flex justify-content-around my-4">
+    
+            <div  class="mx-5">
+               <h1 class="rainbow-text">
+                    Total Bank Entries
+                </h1>
+                <p class="text-light">
+                    Amount of money that has been transfered to bank using razorpay integration
+                </p>
+            </div>
+            
+            <div id="bank_transitions" class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+            
+            </div>
+            
+        </div>
+
+        <hr class="bg-light">
+    
+        <!-- total money withdraw -->
+        <div class="d-flex justify-content-around my-4">
+        <div id="withdraw" class="text-center rounded  text-success shadow   px-3" style="font-size: 70px;background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+        </div>
+        <div  class="">
+           <h1 class="rainbow-text">
+                Today Money Withdraw 
+            </h1>
+            <p class="text-light">
+                Amount of money withdraw by users
+            </p>
+        </div>
+    
+        </div>
+        <hr class="bg-light">
+    
+        <!-- User winning amount -->
+        <div class="d-flex justify-content-around my-4">
+        <div  class="mx-5">
+            <h1 class="rainbow-text">
+                Money Distribution
+             </h1>
+             <p class="text-light">
+                 Amount of money that distribute to users like refer bonus, winning prise 
+             </p>
+         </div>
+         <div id="user_winning_amount" class="text-center text-success shadow  rounded mx-5 px-3" style="font-size: 70px; background-color: rgb(197, 197, 197);min-width: 200px;width: auto;" >
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+{% endblock content %}
+
+
+{% block js %}
+{{block.super}}
+  <script>
+
+$('#show_detail').click(function(){
+let date = document.getElementById('date-search').value
+if (date != ''){
+
+    $('#all_filter').addClass('d-block').removeClass('d-none')
+
+
+    my_data = { selected_date: date}
+
+$.ajax({
+  url: "{% url 'money_record' %}",
+  method: 'POST',
+  dataType: 'json',
+  data: my_data,
+  success: function (data) {
+console.log(data.data)
+$('#earning').text(data.data.earning)
+$('#cash_flow').text(data.data.cash_flow)
+$('#withdraw').text(data.data.withdraw)
+$('#bank_transitions').text(data.data.bank_transitions)
+$('#user_winning_amount').text(data.data.user_winning_amount)
+},
+});
+
+
+}else{
+   
+    document.getElementById('message-d').style.opacity = '1'
+    document.getElementById('message-d').style.display = 'flex'
+    document.getElementById('message-c').style.display = 'block'
+    document.getElementById('message-text').style.color = 'red'
+    $('#message-text').html('<img style="height: 40px;" src="{% static "core/images/error.png" %}" > ' + 
+    'Please select Atlease one date')
+
+    setTimeout(function () {
+          document.getElementById('message-d').style.opacity = '0'
+        }, 3000)
+    setTimeout(function () {
+          document.getElementById('message-d').style.display = 'none'
+          document.getElementById('message-c').style.display = 'none'
+        }, 4000)
+
+
+}
+
+});
+  </script>
+{% endblock js %}

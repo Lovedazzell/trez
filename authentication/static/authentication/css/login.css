@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.row input{
+    outline: none;
+    padding: 9px 9px;
+    background: transparent;
+    border: 1px solid grey;
+    border-radius: 3px;
+    text-align: center;
+    
+}
+
+
+
+.icon{
+    width: 30px;
+}
+
+.auth-password , .auth-username {
+
+border: none;
+outline: none;
+background: transparent;
+padding: 4px 15px;
+}
+
+
+
+
+.logo{
+    margin-bottom: 60px;
+}
+

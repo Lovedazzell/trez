@@ -1,0 +1,76 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super}}
+<link rel="stylesheet" href="{% static 'core/css/addgems.css' %}">
+
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
+
+{% endblock css %}
+
+
+<!-- Seo tags -->
+{% block seo %}
+<title>Trezunt Withdraw</title>      
+<meta name="robots" content="noindex" >
+{% endblock seo %}
+
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class=" parent-box">
+
+  <div class="d-flex justify-content-center align-items-center ">
+    
+    
+    <form action="" method="POST" id="pform" class="form  mt-5" novalidate>
+      <div class="text-center text-muted">Transfer will be done</div>
+      <div class="text-center text-muted">within 5 working hours</div>
+
+      {% csrf_token %}
+      <div class="text-center  mb-4">
+        <img src="{% static 'core/images/bank.png' %}" alt="">
+      </div>
+
+      <div class="border border-secondar px-2 my-3">
+          <div class="text-center my-2 top-color">Account no = {{data.bank_account}}</div>
+          <div class="text-center my-2 top-color">Avaliable gems = {{request.user.gems}}</div>
+          <p class="text-center  border-dark text-muted">
+              Minimum limit 500
+          </p>  
+      </div>
+
+      <div class="text-center">
+        <img class="mx-2" style="height: 30px;" src="{% static 'core/images/money.png' %}" alt="">
+
+        <input style="width: 150px;" class="amount-field" placeholder="Enter Amount" type="number" min="100" name="amount" id="amount">
+      </div>
+
+      <div class="text-center my-3 "> 
+        <input class="button-s-base sky-color px-5 py-2" type="submit" value="Transfer" id="submit">
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+{% block js %}
+{{block.super}}
+{% endblock js %}

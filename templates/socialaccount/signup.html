@@ -1,0 +1,23 @@
+
+{% extends "socialaccount/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+
+<div style="height: 100vh;">
+    <div class="text-center pt-5 logo mb-4">  
+        <img style="width: 502px; height: 97px;"   class="" 
+        src="{% static 'core/images/dark_logo.png' %}" alt="">
+      </div>
+    <div class="text-center px-5 mt-5">
+        <p class="text-center border p-3 bg-danger rounded text-light border-danger" style="font-size: 34px;">
+    This Email id is already register with Trezunt account plesae try with another email id or forget your password
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+body{
+
+    background-color: rgb(12, 26, 54);
+    
+ 
+}
+
+
+.btn-color{
+    background-color: rgba(86,86,140,255)
+}
+
+.gems{
+    height: 100vh;
+    background:linear-gradient(180deg,rgb(12, 26, 54),rgb(236, 236, 236),rgb(236, 236, 236)) ;
+}
+
+.amount-field{
+background: transparent;
+border: none;
+outline: none;
+
+}
+
+
+.form{
+    width: auto;
+    padding: 3rem;
+    height:auto;
+    background-color: rgb(255, 255, 255);
+}
